@@ -24,16 +24,12 @@ snarkjs には node.js の v18 以上が必要なことに注意してくださ�
 
 ## circom によるゼロ知識証明の流れ
 
-以下の GitHub のリポジトリをローカルに `git clone` してください。もし、まだ環境構築が完了していない場合には、 GitHub Codespaces というクラウド環境で動かしてください。
-
-```
-https://github.com/Mameta29/circom-workshop
-```
+この GitHub のリポジトリをローカルに `git clone` してください。もし、まだ環境構築が完了していない場合には、 GitHub Codespaces というクラウド環境で動かしてください。
 
 GitHub Codespaces を使用する場合は、「<> Code 」ボタンを押した後 Codespaces タブに移動して、「 Create codespace on main 」ボタンを押してください。
 
 環境が整ったら、Tornado Cats の 以下のページを読みながら、ご自身のローカル環境または Codespaces 上で一つずつ実際に手を動かしてみてください。
-また、その際の作業ディレクトリは、 `/example1` になります。
+また、その際の作業ディレクトリは、 `/tornado-cats` になります。
 事前に `cd` コマンドで移動してください。
 
 ### 回路の例:因数分解
@@ -65,7 +61,7 @@ snarkjs によるセットアップのより詳しい説明は、snarkjs の Git
 
 ### コンパイルから検証までの流れを俯瞰する
 
-![circom と snarkjs の流れ](circom_and_snarkjs.jpg)
+![circom と snarkjs の流れ](circom_and_snarkjs.png)
 
 *画像引用元: [Circom 2 Documentation - Visual summary](https://docs.circom.io/#visual-summary)*
 
@@ -119,6 +115,26 @@ circom のコードは算術回路などに変換された後、証明者と検�
 
 circomlib は、よく使われる回路パターンをテンプレートとして提供するライブラリです。分岐やループを含む複雑な処理を、より簡単に記述できます。
 
+### circomlib のインストール
+
+circomlib は Node.js のパッケージとして提供されており、circom内 の `include` 文はプロジェクトの `node_modules` ディレクトリからライブラリを探すため、ローカルインストールが必要です。
+
+`circomlib-test` ディレクトリに移動し、今回は npm コマンドを使用して、 circomlib をディレクトリ内にローカルインストールしてください。
+
+これで circomlib のテンプレートを使用する準備が整いました。
+
+### circomlib を使用したコンパイル時の注意
+
+circomlib をインストールした後、circom でコンパイルする際には以下のようなエラーが発生することがあります：
+
+```
+error[P1000]: Include not found: circomlib/circuits/*.circom
+```
+
+このエラーは、circom コンパイラがデフォルトで `node_modules` ディレクトリを検索パスに含めていないために発生します。
+
+circomlib を使用する際は、 `-l node_modules` (library) オプションを使用して `node_modules` ディレクトリを検索パスに追加してください。
+
 ### 主要なテンプレート
 
 **比較器（Comparators）**
@@ -163,6 +179,10 @@ template ConditionalAssignment() {
     out <== mux.out;
 }
 ```
+
+### circomlibjs
+
+`circomlibjs` は、 `circomlib` の回路の witness を計算するための JavaScript ライブラリです。主に `circomlib` の回路をテストする際に使用されます。詳細については、[circomlibjs の GitHub リポジトリ](https://github.com/iden3/circomlibjs) を参照してください。
 
 ### TIPS
 ## デバッグ手法
@@ -294,5 +314,6 @@ component main = Max3();
 
 ### ライブラリ・ツール
 -   [circomlib](https://github.com/iden3/circomlib)
+-   [circomlibjs](https://github.com/iden3/circomlibjs)
 -   [snarkjs](https://github.com/iden3/snarkjs)
--   [zkrepl.dev](https://zkrepl.dev/) - オンライン circom プレイグラウンド
+-   [zkrepl.dev](https://zkrepl.dev/)  （オンラインで circom を気軽に試せるプレイグラウンド）
