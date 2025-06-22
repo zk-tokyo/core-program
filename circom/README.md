@@ -46,6 +46,11 @@ circom コマンドによるコンパイルのより詳しい各オプション�
 
 [Rank 1 Constraint System（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/r1cs/)
 
+今回試作している回路の R1CS の情報を出力するコマンドは以下になります。
+```bash
+snarkjs r1cs info multiplier2.r1cs
+```
+
 ### ウィットネスの計算
 [ウィットネスの計算（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/witness-computation/)
 
@@ -59,13 +64,26 @@ snarkjs によるセットアップのより詳しい説明は、snarkjs の Git
 
 [ゼロ知識証明の生成と検証（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/generation-and-verification/)
 
+### スマートコントラクトからの検証
+
+Tornado Cats には記載がありませんでしたが、 snarkjs で検証をスマートコントラクト上で行うための Solidity の関数とファイルを生成することができます。
+
+```bash
+snarkjs zkey export solidityverifier multiplier2_0001.zkey verifier.sol
+```
+
+コマンドで指定した検証キー（ .zkey ファイル）から、 verifer.sol という Solidity のファイルを出力します。
+このスマートコントラクトをデプロイすることで、外部のスマートコントラクトから関数を実行することで、ゼロ知識証明の検証を行うことができます。
+
+クライアント上でユーザーが入力した値から証明を作成する方法は、snarkjs の GitHub の README の「 [25. Turn the verifier into a smart contract](https://github.com/iden3/snarkjs?tab=readme-ov-file#25-turn-the-verifier-into-a-smart-contract) 」を参照してください。
+
+この Solidity Verifier については、後ほど実装演習で触れることになります。
+
 ### コンパイルから検証までの流れを俯瞰する
 
 ![circom と snarkjs の流れ](circom_and_snarkjs.png)
 
 *画像引用元: [Circom 2 Documentation - Visual summary](https://docs.circom.io/#visual-summary)*
-
-
 
 ## circom 言語の基本
 
@@ -122,18 +140,6 @@ circomlib は Node.js のパッケージとして提供されており、circom�
 `circomlib-test` ディレクトリに移動し、今回は npm コマンドを使用して、 circomlib をディレクトリ内にローカルインストールしてください。
 
 これで circomlib のテンプレートを使用する準備が整いました。
-
-### circomlib を使用したコンパイル時の注意
-
-circomlib をインストールした後、circom でコンパイルする際には以下のようなエラーが発生することがあります：
-
-```
-error[P1000]: Include not found: circomlib/circuits/*.circom
-```
-
-このエラーは、circom コンパイラがデフォルトで `node_modules` ディレクトリを検索パスに含めていないために発生します。
-
-circomlib を使用する際は、 `-l node_modules` (library) オプションを使用して `node_modules` ディレクトリを検索パスに追加してください。
 
 ### 主要なテンプレート
 
@@ -231,6 +237,15 @@ template check_bits(n) {
 
 詳細については、Circom2 Documantaion の 「[Improving security of circuits by using --inspect option](https://docs.circom.io/circom-language/code-quality/inspect/)」 を参照してください。
 
+### circomlib の include 文の簡略化
+
+circomlib 等のライブラリを使用する際は、 circom コマンドでのコンパイル時に `-l node_modules` ( link_libraries ) オプションを使用すると、 `node_modules` ディレクトリを検索パスに追加することができます。
+これにより、include 文の `node_modules/` の部分を省略することができます。
+
+```circom
+include "circomlib/circuits/comparators.circom";
+```
+
 ## 練習問題
 
 ### 1. 基本的な算術回路
@@ -257,7 +272,7 @@ component main = QuadraticEquation();
 
 ```circom
 pragma circom 2.0.0;
-include "circomlib/circuits/comparators.circom";
+include "node_modules/circomlib/circuits/comparators.circom";
 
 template RangeCheck() {
     signal input in;

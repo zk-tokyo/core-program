@@ -1,6 +1,6 @@
 pragma circom 2.1.2;
 
-include "circomlib/circuits/comparators.circom";
+include "node_modules/circomlib/circuits/comparators.circom";
 
 template Multiplier2Alt () {
   signal input a;
