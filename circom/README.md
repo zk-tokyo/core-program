@@ -75,7 +75,7 @@ snarkjs zkey export solidityverifier multiplier2_0001.zkey verifier.sol
 コマンドで指定した検証キー（ .zkey ファイル）から、 verifer.sol という Solidity のファイルを出力します。
 このスマートコントラクトをデプロイすることで、外部のスマートコントラクトから関数を実行することで、ゼロ知識証明の検証を行うことができます。
 
-クライアント上でユーザーが入力した値から証明を作成する方法は、snarkjs の GitHub の README の「 [25. Turn the verifier into a smart contract](https://github.com/iden3/snarkjs?tab=readme-ov-file#25-turn-the-verifier-into-a-smart-contract) 」を参照してください。
+クライアント上でユーザーが入力した値から証明を作成する方法は、snarkjs の GitHub の README の「 [25. Turn the verifier into a smart contract](https://github.com/iden3/snarkjs?tab=readme-ov-file#25-turn-the-verifier-into-a-smart-contract) 」以降の項目を参照してください。
 
 この Solidity Verifier については、後ほど実装演習で触れることになります。
 
