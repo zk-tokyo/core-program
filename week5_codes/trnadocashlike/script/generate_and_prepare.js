@@ -2,7 +2,10 @@
 const { randomBytes } = require('crypto');
 const { buildPoseidon, newMemEmptyTrie } = require('circomlibjs');
 const { buildEddsa } = require('circomlibjs');
-const { keccak256, bytesToHex, secp256k1 } = require('ethereum-cryptography/utils');
+const { bytesToHex } = require('ethereum-cryptography/utils');
+const { keccak256 } = require('ethereum-cryptography/keccak');
+const { secp256k1 } = require('ethereum-cryptography/secp256k1');
+
 const fs = require('fs');
 
 // ランダムフィールド要素の生成（0からp-1の範囲の値）
@@ -21,16 +24,14 @@ async function generateTestData() {
     const poseidon = await buildPoseidon();
     const eddsa = await buildEddsa();
 
-    console.log("aaaaaaaaaaa")
     const privateKey = Uint8Array.from(
         Buffer.from("0001020304050607080900010203040506070809000102030405060708090001", "hex")
     );
-    console.log(privateKey)
-    console.log("bbbbbbbbbbb")
+
+    const publicKey = eddsa.prv2pub(privateKey);
+
     // 2. secp256k1で公開鍵（uncompressed = 65バイト、先頭0x04含む）
     const pubKeyUncompressed = secp256k1.getPublicKey(privateKey, false); // false = uncompressed
-
-    console.log("ccccccccccccc")
       
      // 3. Ethereumアドレス生成：keccak256(pubKeyのX+Y部分) → 下位20バイト
     const pubKeyXY = pubKeyUncompressed.slice(1); // 0x04を除いた64バイト
@@ -38,9 +39,9 @@ async function generateTestData() {
     const evmAddress = "0x" + bytesToHex(addressBytes);
       
     // 4. CircomのFieldに渡す用のBigInt（10進文字列）
-    const encryptedReceiver = BigInt("0x" + bytesToHex(addressBytes)).toString();
+    const encryptedReceiverValue = BigInt("0x" + bytesToHex(addressBytes)).toString();
     console.log("Ethereum address:", evmAddress);
-    console.log("EVM address as BigInt (for Circom):", encryptedReceiver);
+    console.log("EVM address as BigInt (for Circom):", encryptedReceiverValue);
         
     // テストデータの生成
     const testData = {
@@ -239,7 +240,7 @@ async function generateTestData() {
         Ax: eddsa.F.toString(publicKey[0]),
         Ay: eddsa.F.toString(publicKey[1])
     };
-    
+
     // ハッシュされた署名 - Poseidonハッシュの計算
     testData.hashedSignature = poseidon.F.toString(poseidon([
         BigInt(testData.signature.R8x),
