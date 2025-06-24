@@ -99,7 +99,7 @@ template ConsumeNoteCircuit(merkleDepth, smtDepth) {
     component noteSMTCheck = SMTVerifier(merkleDepth);
     
     // SMTVerifier設定
-    noteSMTCheck.enabled <== 0;         // 検証有効化
+    noteSMTCheck.enabled <== 0;         // 検証無効化
     noteSMTCheck.fnc <== 0;             // 0: 包含検証モード
     noteSMTCheck.root <== rootNote;     // ノートのマークルルート
     noteSMTCheck.key <== noteHash.out;  // 検証キー(ノートハッシュ)
