@@ -82,11 +82,11 @@ npm install
 circom circuits/note.circom --r1cs --wasm --sym -l . -l node_modules -o build
 ```
 
-# ワンタイムノート回路のテスト
+# ノート回路のテスト
 
 ## テストデータの生成と検証手順
 
-以下の手順でワンタイムノート回路のテストと検証を行います。
+以下の手順でノート回路のテストと検証を行います。
 
 1. **回路のビルド**
    ```sh

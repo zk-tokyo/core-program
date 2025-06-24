@@ -25,10 +25,10 @@ include "node_modules/circomlib/circuits/bitify.circom";          // ビット�
  * 機能:
  * 1. Nullifier を計算
  * 2. Sparse Merkle Tree で「未使用(非包含)」を証明
- * 3. ワンタイムノートの Merkle Inclusion を証明
+ * 3. ノートの Merkle Inclusion を証明
  * 4. 金額を出力 (後で合計に使用)
  *
- * @param merkleDepth ワンタイムノートのマークルツリーの深さ
+ * @param merkleDepth ノートのマークルツリーの深さ
  * @param smtDepth    Nullifier SMTの深さ
  */
 template ConsumeNoteCircuit(merkleDepth, smtDepth) {
@@ -45,8 +45,8 @@ template ConsumeNoteCircuit(merkleDepth, smtDepth) {
     signal input oldValue;           // 非包含証明用の古いキー値
     signal input isOld0;             // 古いキーが0かどうか
 
-    // ワンタイムノート検証用データ
-    signal input rootNote;           // ワンタイムノート(SMT)のルート
+    // ノート検証用データ
+    signal input rootNote;           // ノート(SMT)のルート
     signal input notePathElements[merkleDepth]; // 証明用のパス要素
     signal input noteValue;          // ノートの値 (SMT用)
 
@@ -158,7 +158,7 @@ template CreateNoteCircuit() {
  *
  * @param nIn          消費するノートの数
  * @param nOut         作成する新規ノートの数
- * @param merkleDepth  ワンタイムノートのマークルツリーの深さ
+ * @param merkleDepth  ノートのマークルツリーの深さ
  * @param smtDepth     Nullifier SMTの深さ
  */
 template MainCircuit(nIn, nOut, merkleDepth, smtDepth) {
@@ -166,7 +166,7 @@ template MainCircuit(nIn, nOut, merkleDepth, smtDepth) {
     // 公開入力 (Public Inputs)
     // ------------------------------------------------
     signal input rootNullifier;                    // Nullifier SMTのルート
-    signal input rootNote;                         // ワンタイムノートのマークルルート
+    signal input rootNote;                         // ノートのマークルルート
     signal input hashedSignature;                  // 署名ハッシュ
     signal input Nullifier[nIn];                   // 各ノートのNullifier (比較用)
     signal input hashedNote_out[nOut];      // 新規ノートのハッシュ配列
