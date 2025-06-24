@@ -12,7 +12,7 @@ contract VerifyProofScript is Script {
             verifierAddress = vm.envAddress("VERIFIER_ADDRESS");
         } catch {
             // Default to the known deployed address if env var is not set
-            verifierAddress = 0xEc3213b7690AC84aa0e1d95f7344d49A2085d32F;
+            verifierAddress = 0x3a696FeAe901DAe50967F28D7A2225577052F394;
         }
 
         // Start broadcast for any state changes (not needed here but required for Script)
