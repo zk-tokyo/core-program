@@ -88,8 +88,8 @@ template ConsumeNoteCircuit(merkleDepth, smtDepth) {
         smtVer.siblings[d] <== smtSiblings[d];
     }
 
-    // ステップ3: ワンタイムノートの包含証明
-    // hashedOnetimeNote = Poseidon(amount, encryptedReceiver, rho)
+    // ステップ3: ノートの包含証明
+    // hashedNote = Poseidon(amount, encryptedReceiver, rho)
     component noteHash = Poseidon(3);
     noteHash.inputs[0] <== amount;
     noteHash.inputs[1] <== encryptedReceiver;
@@ -123,7 +123,7 @@ template ConsumeNoteCircuit(merkleDepth, smtDepth) {
  * 
  * 機能:
  * 1. 1つの新規ノートを作成し、ハッシュ値を計算
- * 2. ハッシュ値(hashedOnetimeNote)を出力
+ * 2. ハッシュ値(hashedNote)を出力
  */
 template CreateNoteCircuit() {
     // ---- 入力シグナル ----
@@ -169,7 +169,7 @@ template MainCircuit(nIn, nOut, merkleDepth, smtDepth) {
     signal input rootNote;                         // ワンタイムノートのマークルルート
     signal input hashedSignature;                  // 署名ハッシュ
     signal input Nullifier[nIn];                   // 各ノートのNullifier (比較用)
-    signal input hashedOnetimeNote_out[nOut];      // 新規ノートのハッシュ配列
+    signal input hashedNote_out[nOut];      // 新規ノートのハッシュ配列
     signal input hashedAmount;                     // 送金額合計のハッシュ
 
     // ------------------------------------------------
@@ -269,7 +269,7 @@ template MainCircuit(nIn, nOut, merkleDepth, smtDepth) {
 
         // パブリック入力との整合性検証
         // 生成されたハッシュが公開ハッシュと一致することを確認
-        hashedOnetimeNote_out[j] === createNotes[j].hashedNote;
+        hashedNote_out[j] === createNotes[j].hashedNote;
 
         // 出力金額の累積
         sumOut += amount_out[j];
@@ -318,4 +318,4 @@ template MainCircuit(nIn, nOut, merkleDepth, smtDepth) {
 }
 
 // メイン回路のインスタンス
-component main {public [rootNullifier, rootNote, hashedSignature, Nullifier, hashedOnetimeNote_out, hashedAmount]} = MainCircuit(2, 2, 128, 128);
+component main {public [rootNullifier, rootNote, hashedSignature, Nullifier, hashedNote_out, hashedAmount]} = MainCircuit(2, 2, 128, 128);

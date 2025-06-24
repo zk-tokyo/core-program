@@ -79,7 +79,7 @@ npm install
 
 ## Build
 ```sh
-circom circuits/onetime_note.circom --r1cs --wasm --sym -l . -l node_modules -o build
+circom circuits/note.circom --r1cs --wasm --sym -l . -l node_modules -o build
 ```
 
 # ワンタイムノート回路のテスト
@@ -91,7 +91,7 @@ circom circuits/onetime_note.circom --r1cs --wasm --sym -l . -l node_modules -o 
 1. **回路のビルド**
    ```sh
    mkdir -p build
-   circom circuits/onetime_note.circom --r1cs --wasm --sym -l . -l node_modules -o build
+   circom circuits/note.circom --r1cs --wasm --sym -l . -l node_modules -o build
    ```
 
 2. **テストデータの生成**

@@ -21,12 +21,16 @@ async function generateTestData() {
     const poseidon = await buildPoseidon();
     const eddsa = await buildEddsa();
 
+    console.log("aaaaaaaaaaa")
     const privateKey = Uint8Array.from(
         Buffer.from("0001020304050607080900010203040506070809000102030405060708090001", "hex")
     );
-      
+    console.log(privateKey)
+    console.log("bbbbbbbbbbb")
     // 2. secp256k1で公開鍵（uncompressed = 65バイト、先頭0x04含む）
     const pubKeyUncompressed = secp256k1.getPublicKey(privateKey, false); // false = uncompressed
+
+    console.log("ccccccccccccc")
       
      // 3. Ethereumアドレス生成：keccak256(pubKeyのX+Y部分) → 下位20バイト
     const pubKeyXY = pubKeyUncompressed.slice(1); // 0x04を除いた64バイト
@@ -262,7 +266,7 @@ function prepareInputs(testData) {
         rootNote: testData.rootNote,
         hashedSignature: testData.hashedSignature,
         Nullifier: testData.Nullifier || testData.nullifiers,
-        hashedOnetimeNote_out: testData.hashedNotes,
+        hashedNote_out: testData.hashedNotes,
         hashedAmount: testData.hashedAmount,
         
         // 秘密入力
@@ -292,7 +296,7 @@ function prepareInputs(testData) {
         rho2: testData.rho2
     };
     
-    // build/onetime_note_jsディレクトリが存在するか確認して作成
+    // build/note_jsディレクトリが存在するか確認して作成
     if (!fs.existsSync('input')) {
         fs.mkdirSync('input', { recursive: true });
     }
