@@ -12,9 +12,7 @@ include "node_modules/circomlib/circuits/eddsaposeidon.circom";   // EdDSA(Ed255
 // データ構造・検証
 include "node_modules/circomlib/circuits/smt/smtverifier.circom"; // Sparse Merkle Tree (SMT)証明
 
-// ユーティリティ
-include "node_modules/circomlib/circuits/comparators.circom";      // 比較器
-include "node_modules/circomlib/circuits/bitify.circom";          // ビット変換 (Num2Bits等)
+
 // =====================================================================
 // サブコンポーネント定義
 // =====================================================================
