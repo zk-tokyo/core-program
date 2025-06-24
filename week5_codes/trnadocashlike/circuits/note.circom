@@ -229,7 +229,7 @@ template MainCircuit(nIn, nOut, merkleDepth, smtDepth) {
         consumeNotes[i].oldValue <== smt_oldValue[i];
         consumeNotes[i].isOld0 <== smt_isOld0[i];
         
-        // SMTシブリング設定
+        // SMT sibling 設定
         for (var d = 0; d < smtDepth; d++) {
             consumeNotes[i].smtSiblings[d] <== smt_siblings[i][d];
         }
