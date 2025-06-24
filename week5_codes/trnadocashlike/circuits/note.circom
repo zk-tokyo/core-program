@@ -163,7 +163,7 @@ template CreateNoteCircuit() {
  */
 template MainCircuit(nIn, nOut, merkleDepth, smtDepth) {
     // ------------------------------------------------
-    // 公開入力 (Public Inputs)
+    // Public Inputs
     // ------------------------------------------------
     signal input rootNullifier;                    // Nullifier SMTのルート
     signal input rootNote;                         // ノートのマークルルート
@@ -173,7 +173,7 @@ template MainCircuit(nIn, nOut, merkleDepth, smtDepth) {
     signal input hashedAmount;                     // 送金額合計のハッシュ
 
     // ------------------------------------------------
-    // 秘密入力 (Private Inputs)
+    // Private Inputs
     // ------------------------------------------------
     // 1. 消費ノート情報
     // 基本情報
@@ -267,7 +267,7 @@ template MainCircuit(nIn, nOut, merkleDepth, smtDepth) {
         createNotes[j].encryptedReceiver <== encryptedReceiver_out[j];
         createNotes[j].rho <== rho_out[j];
 
-        // パブリック入力との整合性検証
+        // Public Inputとの整合性検証
         // 生成されたハッシュが公開ハッシュと一致することを確認
         hashedNote_out[j] === createNotes[j].hashedNote;
 
