@@ -87,43 +87,166 @@ snarkjs zkey export solidityverifier multiplier2_0001.zkey verifier.sol
 
 ## circom 言語の基本
 
+circom には、大きく分けて2つの役割があります。
+
+- 制約
+  - 回路の R1CS 制約のリストの作成
+- 計算
+  - 入力値から witness を計算するためのコードの生成
+
+この2つの役割を同時にコーディングすることが、利便性と後述する特有の制限に繋がっています。
+
 ### インポート
 
 `include` : 外部のテンプレートをインポートする。
 
 ### 変数の宣言
 
-`signal` : `signal input` の値によって変化する変数を定義する。
-- 一度値が割り当てられると変更不可（immutable）
-- コンパイル時には常に未知の値として扱われる
-- 算術回路の一部となる
+変数の宣言には、 `signal` と `var` と `component` があります。
 
-`var` : `signal input` の値によって変化しない変数を定義する。
-- 制約生成時の計算に使用される
-- 再代入可能（mutable）
+**signal** : 制約と計算のための変数
+
+signal は、 以下の3種類があります。
+
+- `signal input` : template への入力値を受け取る変数
+- `signal output` : template からの出力値を返す変数
+- `signal` : template 内で任意に宣言する制約と計算のための変数定義
+
+これらは制約と計算のための変数で、回路をコンパイルして制約を作成する際に、template 外の未知の値を定義するために使用します。
+
+そのため、signal では再代入等の動的な変更はできません。
+
+**var** : 計算のための変数
+
+計算のための変数で、制約は生成されません。
+
+そのため、var では再代入等の動的な変更が可能です。
+
+一般的なプログラミング言語の変数宣言と同様のものと考えることができ、ループのインデックスの定義等によく使用されます。
+
+**component** : template のインスタンス化のための変数
+
+外部の template をインスタンス化し、現在の template 内で使用します。
+
+また、 main コンポーネントを定義するときに、 public に指定することで秘匿化しない公開の入力値を定義することができます。
+それ以外の入力値は全て自動的に private に設定されます。
+
+```circom
+template Multiplier(){
+    signal input in1;
+    signal input in2;
+    signal output out;
+    out <== in1 * in2;
+}
+component main {public [in1]} = Multiplier();
+```
 
 ### 代入演算子
 
-**`<--`** : シグナルに値を代入する（制約は生成されない点に注意）
+**`<==`** : 制約と計算の両方を同時に行う代入演算子です。具体的には、代入と共に、両辺が等しいという制約を追加します。
 
-**`<==`** : シグナルに代入しつつ、両辺が等しいという制約を R1CS に追加する
-- **推奨**: 代入と制約生成を同時に行うため安全。可能な限りこちらを使用すべき。
+基本的に、こちらを使用することが推奨されています。
 
+**`<--`** : signal に対して計算のための代入のみを行う代入演算子です。制約を追加する必要がない場合や、後で制約を追加する場合に使用します。
 
+**`===`** : 制約のみを追加する代入演算子です。 `<--` で一時的な計算を行った後に、計算の結果に対して制約を追加する場合に使用します。
+
+**`=`** : var に対して計算のための代入のみを行う代入演算子です。
+
+つまり、以下の2つのコードは同等です。
+
+```circom
+pragma circom 2.1.6;
+
+template Multiply() {
+    signal input a;
+    signal input b;
+    signal output c;
+    
+    c <-- a * b;
+    c === a * b;
+}
+
+template MultiplySame() {
+    signal input a;
+    signal input b;
+    signal output c;
+    
+    c <== a * b;
+}
+```
+
+### template
+circom では、回路は `template` を使って定義し、制約を生成します。
+
+前述のとおり、`component` を使用してインスタンス化します。
+
+また、`component` が n 個の入力を取る場合は、`template` 内でこれを `signal input in[n]` として指定するのが一般的です。
+
+以下のように使用できます。
+
+```circom
+template CheckIsEqual() {
+  signal input a;
+  signal input b;
+  signal output c;
+
+  component eq = IsEqual();  // 外部の template
+  eq.in[0] <== a;  // 入力値１
+  eq.in[1] <== b;  // 入力値２
+  c <== eq.out;  // 出力値
+}
+```
+
+### function
+circom の `function` は、計算を実行するために使用されます。`template` とは異なり、回路の制約を生成しません。再利用可能な複雑なロジックをカプセル化するのに役立ちます。
+
+- `function` は `signal` ではなく `var` 変数に対して操作を行います。
+- すべての可能な実行パスに対して `return` 文が必要です。
+- `function` 内の配列のサイズは、コンパイル時に既知の定数値でなければなりません。
+
+以下は `function` の例です：
+
+```circom
+function f(x) {
+  if (x==0) {
+    return 1;
+  } else if (x==1) {
+    return 0;
+  }
+  return 42; // その他のケースに対応する return 文が必要
+}
+```
+
+### 基本演算子
+
+circom にはブール演算子、算術演算子、ビット演算子があります。
+これらは一般的なプログラミング言語と同様の動作をしますが、 算術演算子は p を法とする数値として動作することに注意してください。
+
+具体的な基本演算子については、Circom 2 Documentation の [Basic Operators](https://docs.circom.io/circom-language/basic-operators/) を参照してください。
 
 ## コーディングにおける circom 特有の制限
 
-circom のコードは算術回路などに変換された後、証明者と検証者に渡されるため、証明者から入力される `signal input` によって算術回路の構造を後から動的に変化させることはできません。
-そのため、 `signal` は未知の値として定義されていて、 circom のコード内の算術回路の構造に影響を与えるような部分では、 `signal` の値を直接利用することができません。
-
 ### signal と 配列
 
-配列のインデックスに signal を使用することはできません。
-`array[signal_value]` のように、signal の値を用いて配列の要素を指定することは、動的な変更となってしまうためです。
+`array[signal_value]` のように配列のインデックスに signal を使用することはできません。
+signal の値を用いて配列の要素を指定してしまうと、未知の値によって回路の構造が動的に変わることになってしまうためです。
+
+また、コンパイル時に配列のサイズを定数で確定させる必要があります。
 
 ### 分岐とループ
 
-分岐やループの条件部分などで、例えば if 文で `signal` の値により分岐させたい場合には、どちらの分岐も計算され両方の和が計算されるものの、条件により分岐の片方の計算結果は 0 になるようにコードを書く必要があります。
+circom の回路は、コンパイル時にその構造が静的に決定されます。そのため、証明生成時まで値が確定しない `signal` を、 `if` 文や `for` ループの条件式に直接使用して回路の制約を動的に変更することはできません。`signal` の値に依存する条件分岐を実装するには、`if` 文などの制御構文ではなく、算術的な制約に置き換える必要があります。
+
+例えば `condition` という `signal` (値は0か1) によって `a` か `b` を選択する場合、以下のような算術式で表現します。
+
+```circom
+out <== condition * a + (1 - condition) * b;
+```
+
+これにより、`condition` が `1` なら `out` は `a` に、 `0` なら `b` と同等になり、条件分岐を実現できます。
+
+このようなロジックは、後述する `circomlib` のテンプレート（ Mux1 等）を利用すると、より簡単に実装できます。
 
 ### その他の制限
 
@@ -140,111 +263,70 @@ circomlib は Node.js のパッケージとして提供されており、circom�
 `circomlib-test` ディレクトリに移動し、今回は npm コマンドを使用して、 circomlib をディレクトリ内にローカルインストールしてください。
 
 これで circomlib のテンプレートを使用する準備が整いました。
+気になるテンプレートを試してみてください。
 
 ### 主要なテンプレート
 
-**比較器（Comparators）**
+#### ビット変換（Bit Operations）
+- `Num2Bits(n)`: 数値を n ビットの配列に変換
+- `Bits2Num(n)`: n ビットの配列を数値に変換
+
+#### 比較器（Comparators）
+
+circomlibが提供する比較器は、主に等価性をチェックするものと、大小関係を比較するものの2種類に大別できます。
+
+等価比較
 - `IsZero()`: 入力が 0 かどうかをチェック
 - `IsEqual()`: 2つの入力が等しいかをチェック
+
+大小比較
+
+circomが扱う数値は巨大な素数 p を法とする有限体上の要素であるため、単純な大小比較は意図通りに機能しません。安全に大小を比較するためには、比較対象の数値が p よりも小さいことを保証した上で、工夫する必要があります。
+circomlibの比較器では、比較したい数値が最大で何ビットの大きさなのかを引数 `n` で指定し、その範囲内で計算を行うことで、大小関係を正しく比較しています。
+
 - `LessThan(n)`: 2つの入力を比較して in[0] < in[1] かをチェック（n ビット以内の数値）
 - `LessEqThan(n)`: 2つの入力を比較して in[0] <= in[1] かをチェック
 - `GreaterThan(n)`: 2つの入力を比較して in[0] > in[1] かをチェック
 - `GreaterEqThan(n)`: 2つの入力を比較して in[0] >= in[1] かをチェック
 
-**ビット変換（Bit Operations）**
-- `Num2Bits(n)`: 数値を n ビットの配列に変換
-- `Bits2Num(n)`: n ビットの配列を数値に変換
+#### 論理ゲート（Logical Gates）
+`circomlib`には、ブール代数の基本的な論理ゲートを実装したテンプレートも用意されています。入力は`0`または`1`のバイナリ値を想定しています。
 
-**マルチプレクサ（Mux1 & Mux2）**
-- `Mux1()`: 2つの入力から1つを選択
-- `Mux2()`: 4つの入力から1つを選択
+- `AND()`: 論理積
+- `OR()`: 論理和
+- `NOT()`: 否定
+
+#### マルチプレクサ（Mux1 & Mux2）
+- `Mux1()`: 条件信号 `s` が 0 なら入力 `c[0]` を、1 なら `c[1]` を選択して出力します。
+- `Mux2()`: 2ビットの条件信号 `s` の値 (0〜3) に応じて、4つの入力 `c[0]`〜`c[3]` から1つを選択します。
 
 ### 使用例
 
 ```circom
-pragma circom 2.0.0;
-include "circomlib/circuits/comparators.circom";
-include "circomlib/circuits/mux1.circom";
+pragma circom 2.1.6;
 
-template ConditionalAssignment() {
-    signal input value;
-    signal input threshold;
-    signal output out;
+include "node_modules/circomlib/circuits/comparators.circom";
 
-    // value < threshold かをチェック（8ビット以内の数値）
-    component lt = LessThan(8);
-    lt.in[0] <== value;
-    lt.in[1] <== threshold;
+template Over20() {
 
-    // 条件に応じて異なる値を出力
-    component mux = Mux1();
-    mux.s <== lt.out;
-    mux.c[0] <== 100; // value >= threshold の場合
-    mux.c[1] <== 200; // value < threshold の場合
-
-    out <== mux.out;
+    signal input age;
+    signal output oldEnough;
+    
+    // 年齢を格納するには8ビットで十分なため、8ビットの比較器を使用
+    component gt = GreaterThan(8);
+    gt.in[0] <== age;
+    gt.in[1] <== 20;
+	0 === gt.out;
+    
+    oldEnough <== gt.out;
 }
+
+component main = Over20();
 ```
 
 ### circomlibjs
 
 `circomlibjs` は、 `circomlib` の回路の witness を計算するための JavaScript ライブラリです。主に `circomlib` の回路をテストする際に使用されます。詳細については、[circomlibjs の GitHub リポジトリ](https://github.com/iden3/circomlibjs) を参照してください。
-
-### TIPS
-## デバッグ手法
-
-circom では、回路開発時のデバッグを支援するいくつかの機能が提供されています。
-
-### log 操作
-
-`log` 操作を使用して、式の評価結果を標準エラー出力に表示できます。
-
-```circom
-log(135);
-log(c.b);
-log(x==y);
-log("The expected result is ", 135, " but the value of a is", a);
-```
-
-詳細については、Circom2 Documantaion の 「[Debugging Operations](https://docs.circom.io/circom-language/code-quality/debugging-operations/)」 を参照してください。
-
-### assert 文
-
-`assert` 文を使用して、条件をチェックできます。コンパイル時に評価可能な場合はコンパイル時にチェックされ、そうでない場合は witness 生成時にチェックされます。
-
-```circom
-template A(n) {
-  signal input in;
-  assert(n>0);  // コンパイル時にチェック
-  assert(in<=254);  // witness 生成時にチェック
-}
-```
-
-詳細については、Circom2 Documantaion の 「[Code Assertion](https://docs.circom.io/circom-language/code-quality/code-assertion/)」 を参照してください。
-
-### --inspect オプション
-
-コンパイル時に `--inspect` オプションを使用すると、制約不足の可能性があるシグナルを検出できます。使用されていないシグナルがある場合は、`_` を使用して意図的であることを示すことができます。
-
-```circom
-template check_bits(n) {
-  signal input in;
-  component check = Num2Bits(n);
-  check.in <== in;
-  _ <== check.out;  // 出力を意図的に使用しないことを明示
-}
-```
-
-詳細については、Circom2 Documantaion の 「[Improving security of circuits by using --inspect option](https://docs.circom.io/circom-language/code-quality/inspect/)」 を参照してください。
-
-### circomlib の include 文の簡略化
-
-circomlib 等のライブラリを使用する際は、 circom コマンドでのコンパイル時に `-l node_modules` ( link_libraries ) オプションを使用すると、 `node_modules` ディレクトリを検索パスに追加することができます。
-これにより、include 文の `node_modules/` の部分を省略することができます。
-
-```circom
-include "circomlib/circuits/comparators.circom";
-```
 
 ## 練習問題
 
