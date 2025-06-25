@@ -1,18 +1,15 @@
 pragma circom 2.1.2;
 
-// 回路の定義
-template Multiplier3 () {  
+template Multiplier3 () {
 
-   // シグナルの宣言
    signal input a;
    signal input b;
    signal input c;
    signal output d;
 
-   // 制約
+   signal tmp;  // 3つ以上の掛け算には一時的な変数が必要
    tmp <== a * b;
    d <== tmp * c;
 }
 
-// インスタンス化
 component main = Multiplier3();
