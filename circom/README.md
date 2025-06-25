@@ -156,7 +156,7 @@ component main {public [in1]} = Multiplier();
 つまり、以下の2つのコードは同等です。
 
 ```circom
-pragma circom 2.1.6;
+pragma circom 2.1.2;
 
 template Multiply() {
     signal input a;
@@ -303,7 +303,7 @@ circomlibの比較器では、比較したい数値が最大で何ビットの�
 ### 使用例
 
 ```circom
-pragma circom 2.1.6;
+pragma circom 2.1.2;
 
 include "node_modules/circomlib/circuits/comparators.circom";
 

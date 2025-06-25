@@ -1,4 +1,4 @@
-pragma circom 2.1.6;
+pragma circom 2.1.2;
 
 // TODO: circomlibから comparators.circom をインクルードして `IsZero` コンポーネントにアクセスしてください
 
