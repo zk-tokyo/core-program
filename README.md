@@ -20,7 +20,7 @@ Core Programはゼロ知識証明の理論と実装の理解を促し、Ethereum
 
 |  | オンライン | オンサイト | ゲストスピーカー |
 | --- | --- | --- | --- |
-| week0(7/28~8/2) | 数学的基礎 | なし | なし |
+| week0(7/28~8/2) | 有限体と楕円曲線 | なし | なし |
 | week1(7/28~8/2) | ゼロ知識証明入門 | ホワイトボードセッション1 | [oskarth](https://x.com/oskarth) |
 | week2(8/4~8/9) | コミットメントスキーム・PLONK | ホワイトボードセッション2 | なし |
 | week3(8/12~8/16) | Groth16 | ホワイトボードセッション3 | TBD |
@@ -51,7 +51,7 @@ Core Programはゼロ知識証明の理論と実装の理解を促し、Ethereum
 
 | 週 | スライド | 解説動画 | ステータス |
 | --- | --- | --- | --- |
-| week0 | 数学的基礎 | 準備中 | 🔄 作成中 |
+| week0 | [有限体と楕円曲線](https://docs.google.com/presentation/d/1faqAS3ryA0RGwsFvkEdv5BHr8J9TX4STkJuqkxZAWrc/edit?usp=sharing) | https://youtu.be/4KaWvuNfG6I | 🔄 作成中 |
 | week1 | ゼロ知識証明入門 | 準備中 | 🔄 作成中 |
 | week2 | コミットメントスキーム・PLONK | 準備中 | 🔄 作成中 |
 | week3 | Groth16 | 準備中 | 🔄 作成中 |
