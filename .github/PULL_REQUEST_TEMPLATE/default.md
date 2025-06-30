@@ -1,9 +1,3 @@
----
-name: default
-about: default PR template
-title: ""
----
-
 <!-- 1. PRのタイトルを編集 -->
 
 ## 🌈 Overview <!-- 2. PRの概要を簡潔に記載 -->
