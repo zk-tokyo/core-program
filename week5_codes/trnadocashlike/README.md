@@ -82,6 +82,65 @@ npm install
 circom circuits/note.circom --r1cs --wasm --sym -l . -l node_modules -o build
 ```
 
+# ノート回路用語定義
+
+1. **Note**
+秘匿送金に使用される受信証明。UTXOのOutputに相当。
+- amount: 金額
+- ownerPubKey: 所有者のPublicKey
+- rho: ランダム値
+
+2. **HashedNote**
+hash(amount, ownerPubKey, rho) の形でオンチェーン上に秘匿状態で保存される。
+なお、hash関数はPoseidon hashを使用。
+
+3. **Nullifier**
+hash(amount, ownerPubKey, hash(rho))の形で表現される、Noteが消費されたことを示す識別子。保持者のみが知る。
+
+4. **MerkleTree**
+HashedNoteを保存する。要素の包含証明を行う。
+
+5. **SparseMerkleTree**
+Nullifierを保存する。要素の非包含証明を行う。
+
+# 入金プロセス
+```mermaid
+sequenceDiagram
+    participant Sender
+    participant Backend Service
+    participant Smart Contract
+
+    Sender->>Backend Service: Noteの作成依頼
+    Backend Service->>Backend Service: Noteを作成
+    Backend Service->>Backend Service: zkProof を生成
+    Backend Service->>Sender: Note, zkProof を返却
+
+    Sender->>Smart Contract: HashedNote, zkProofを元にトークンをデポジットの Tx を送信 
+
+    Smart Contract->>Smart Contract: zkProof を検証
+    Smart Contract->>Smart Contract: HashedNote を保存
+```
+
+# 送金プロセス
+```mermaid
+sequenceDiagram
+    participant Sender
+    participant Smart Contract
+
+    %% Transactionの作成
+    Sender->>Sender: Transactionを作成
+
+    %% Smart Contract への送信
+    Sender->>Smart Contract: Transactionを送信
+
+    Smart Contract->>Smart Contract: Proofを検証
+
+    Smart Contract->>Smart Contract: 新しい状態のMerkleTreeRootを保存
+    Smart Contract->>Smart Contract: 新しい状態のSparseMerkleTreeRootを保存
+
+```
+
+
 # ノート回路のテスト
 
 ## テストデータの生成と検証手順
