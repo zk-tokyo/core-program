@@ -1,0 +1,17 @@
+name: "pr labeler"
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  add-labels:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/labeler@v5
+        with:
+          configuration-path: .github/labeler_configs.yml
