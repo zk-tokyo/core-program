@@ -108,7 +108,7 @@ Markdownでの数式やコードの記述方法は[こちら](https://help.docba
 | Discord名 | 役割 | 自己紹介 |
 | --- | --- | --- |
 | shouki | week 0 | このプログラムのマネージャーを務めさせていただきます津田と申します。現在は[Uzumaki.house](https://uzumaki.house/)を拠点に、VOLE-based ZKの研究・開発や形式検証を使ったEthereumのセキュリティ向上などを考えています。以前はゼロ知識証明を使った秘匿送金プロジェクトやzk-Rollupの開発にも携わっておりました。受講者の皆さんがCore Programの後も活躍できるように全力でサポートさせていただきます。 |
-|  |  |  |
+| gohan | week 1 & 3 | 私はZK Core Program 2023をきっかけにZKを学び、[MPCについてEthereum Foundation PSEと共同研究](https://eprint.iacr.org/2024/2037)、[zkVMベンチマークについてZKProof7で発表](https://www.youtube.com/live/LMLfA1N5Has)といった研究成果を上げ、現在は近未来暗号研究所[ZOMIA](https://zomiaresearch.org/)で研究と事業を進めています。ZK(SNARK)は、この信頼できない社会に突如として現れた世界を救う魔法です。一流の魔術師になって一緒に世界を救いましょう。 |
 | seiya_kobayashi | weeks 2 & 4 | 持続可能性のある次世代のインターネットとそれを取り巻く社会において、ゼロ知識証明をはじめとした[現代の暗号技術](https://blog.seiya.work/2024/10/04/modern-cryptography.html)はその中心的役割を果たすことになると考えています。[transformer](https://arxiv.org/pdf/1706.03762) をAI領域における一つの転換点と捉えると、[SNARK](https://eprint.iacr.org/2013/279.pdf) は、暗号領域における大きな転換点といえるでしょう。このプログラムでは、主にその転換点以降の暗号学的証明技術について、理論と共にそれらが実社会でどのように応用できるのかを一緒に模索していきましょう。 |
 |  |  |  |
 |  |  |  |
