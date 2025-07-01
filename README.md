@@ -39,7 +39,7 @@ Core Programはゼロ知識証明の理論と実装の理解を促し、Ethereum
 4. 8/2にオンサイト演習に取り組む
 5. 8/8までにオンライン演習のレビューが返ってくる
 
-ゲストスピーカによる公演は現在調整中です。日時やオンライン・オンサイトなどの決定は追って連絡いたします。なお、Core ProgramのスケジュールはGoogle Calendarで共有いたします。
+ゲストスピーカによる公演は現在調整中です。日時やオンライン・オンサイトなどの決定は追って連絡いたします。なお、Core Programのスケジュールは[Google Calendar](https://calendar.google.com/calendar/u/0?cid=OWVmODg4YzlmODM3NTBkYTIxNjA5OWY0ZDdkZWZjNmRhZGNlYWRiNjI1NDQ5ZWM4NWI4YjAzZTVmNGM5N2Y0Y0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t)で共有いたします。
 
 [](https://calendar.google.com/calendar/u/1?cid=ZjI4ZjhmOWY4NTMzMzJmM2FiNDEzZjQ3Y2ZhZTFkOWMyNzNiN2UwOWQ4OGUwZDM5ZTRmYzQ3MDZiNWVkZTg2NkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t)
 
@@ -81,7 +81,7 @@ Core Programはゼロ知識証明の理論と実装の理解を促し、Ethereum
 Markdownでの数式やコードの記述方法は[こちら](https://help.docbase.io/posts/13697)を参考にしてください。
 また、回答のレビューはそのPRに対して行いますので、適宜Githubの通知を確認してください。
 
-### 3.2 オンサイト演習
+### 3.2 ホワイトボードセッション
 
 オンサイトでも演習を行います。これはホワイトボードセッションと呼びます。
 
