@@ -10,17 +10,19 @@ Tornado Cats の[ゼロ知識証明の回路の基礎](https://minaminao.github.
 
 circom を利用するためには、主に circom コンパイラ本体と、証明生成・検証のための snarkjs 等のライブラリをセットアップする必要があります。
 
-### 2.1 circom と snarkjs のインストール
+**1. circom の install**
 
 Circom 2 Documantation の [Installation](https://docs.circom.io/getting-started/installation/) を参考に circom をインストールしてください。
 
 circom には rust が必要なことに注意してください。
 
+**2. snarkjs の install**
+
 [snarkjs の GitHub の README](https://github.com/iden3/snarkjs) を参考に snarkjs をインストールしてください。
 
 snarkjs には node.js の v18 以上が必要なことに注意してください。
 
-## 3. circom によるゼロ知識証明の流れ
+**3. git clone**
 
 この GitHub のリポジトリをローカルに `git clone` してください。もし、まだ環境構築が完了していない場合には、 GitHub Codespaces というクラウド環境で動かしてください。
 
@@ -29,6 +31,8 @@ GitHub Codespaces を使用する場合は、「<> Code 」ボタンを押した
 環境が整ったら、Tornado Cats の 以下のページを読みながら、ご自身のローカル環境または Codespaces 上で一つずつ実際に手を動かしてみてください。
 また、その際の作業ディレクトリは、 `/tornado-cats` になります。
 事前に `cd` コマンドで移動してください。
+
+## 3. circom によるゼロ知識証明の流れ
 
 ### 3.1 コンパイルから検証までの流れを俯瞰する
 
