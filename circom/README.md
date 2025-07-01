@@ -206,7 +206,9 @@ circom の `function` は、計算を実行するために使用されます。`
 
 `function` は `signal` ではなく `var` 変数に対して操作を行います。
 
-以下は `function` の例です：
+以下は `function` の例です。
+
+この例では、`x` の値に応じて異なる値を返す関数を定義しています。circom では、関数内の制御フローの全てのパスに `return` 文が必要なため、最後に `return 42;` を追加して、すべての条件に対応しています。
 
 ```circom
 function f(x) {
