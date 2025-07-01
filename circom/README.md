@@ -30,17 +30,23 @@ GitHub Codespaces を使用する場合は、「<> Code 」ボタンを押した
 また、その際の作業ディレクトリは、 `/tornado-cats` になります。
 事前に `cd` コマンドで移動してください。
 
-### 回路の例:因数分解
+### コンパイルから検証までの流れを俯瞰する
+
+![circom と snarkjs の流れ](circom_and_snarkjs.png)
+
+*画像引用元: [Circom 2 Documentation - Visual summary](https://docs.circom.io/#visual-summary)*
+
+**1. 回路の例:因数分解**
 
 [回路の例:因数分解（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/factorization/)
 
-### 回路のコンパイル
+**2. 回路のコンパイル**
 
 [回路のコンパイル（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/compile/)
 
 circom コマンドによるコンパイルのより詳しい各オプションの説明は、Circom 2 Documentation の [Compiling our circuit](https://docs.circom.io/getting-started/compiling-circuits/) を参照してください。
 
-### Rank 1 Constraint System
+**3. Rank 1 Constraint System**
 
 [Rank 1 Constraint System（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/r1cs/)
 
@@ -49,20 +55,21 @@ circom コマンドによるコンパイルのより詳しい各オプション�
 snarkjs r1cs info multiplier2.r1cs
 ```
 
-### ウィットネスの計算
+**4. ウィットネスの計算**
+
 [ウィットネスの計算（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/witness-computation/)
 
-### ゼロ知識証明のセットアップ
+**5. ゼロ知識証明のセットアップ**
 
 [ゼロ知識証明のセットアップ（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/setup-zkp/)
 
 snarkjs によるセットアップのより詳しい説明は、snarkjs の GitHub の README の [Guide](https://github.com/iden3/snarkjs/blob/master/README.md#guide) を参照してください。
 
-### ゼロ知識証明の生成と検証
+**6. ゼロ知識証明の生成と検証**
 
 [ゼロ知識証明の生成と検証（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/generation-and-verification/)
 
-### スマートコントラクトからの検証
+**7. スマートコントラクトからの検証**
 
 Tornado Cats には記載がありませんでしたが、 snarkjs で検証をスマートコントラクト上で行うための Solidity の関数とファイルを生成することができます。
 
@@ -76,12 +83,6 @@ snarkjs zkey export solidityverifier multiplier2_0001.zkey verifier.sol
 クライアント上でユーザーが入力した値から証明を作成する方法は、circom 2 Documentation の [Verifying from a Smart Contract](https://docs.circom.io/getting-started/proving-circuits/#verifying-from-a-smart-contract) snarkjs の GitHub の README の [25. Turn the verifier into a smart contract](https://github.com/iden3/snarkjs?tab=readme-ov-file#25-turn-the-verifier-into-a-smart-contract) 以降の項目を参照してください。
 
 この Solidity Verifier については、後ほど実装演習で触れることになります。
-
-### コンパイルから検証までの流れを俯瞰する
-
-![circom と snarkjs の流れ](circom_and_snarkjs.png)
-
-*画像引用元: [Circom 2 Documentation - Visual summary](https://docs.circom.io/#visual-summary)*
 
 ## circom 言語の基本
 
