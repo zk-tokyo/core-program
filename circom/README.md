@@ -163,6 +163,8 @@ template Multiplier(){
     signal output out;
     out <== in1 * in2;
 }
+
+// main コンポーネントで signal input in1 を公開入力に指定
 component main {public [in1]} = Multiplier();
 ```
 
