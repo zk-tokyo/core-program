@@ -16,8 +16,6 @@ Circom 2 Documantation の [Installation](https://docs.circom.io/getting-started
 
 circom には rust が必要なことに注意してください。
 
-### snarkjs のインストール
-
 [snarkjs の GitHub の README](https://github.com/iden3/snarkjs) を参考に snarkjs をインストールしてください。
 
 snarkjs には node.js の v18 以上が必要なことに注意してください。
