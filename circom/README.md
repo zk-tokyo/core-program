@@ -86,7 +86,7 @@ snarkjs zkey export solidityverifier multiplier2_0001.zkey verifier.sol
 コマンドで指定した検証キー（ .zkey ファイル）から、 verifer.sol という Solidity のファイルを出力します。
 このスマートコントラクトをデプロイすることで、外部のスマートコントラクトから関数を実行することで、ゼロ知識証明の検証を行うことができます。
 
-このオンチェーン検証は、 Tornado Cash を始めとする多くの zk-SNARKs を活用したアプリケーションで採用されている重要な技術です。スマートコントラクト上で証明を検証することにより、特定の情報を秘匿したまま計算の正当性のみをブロックチェーンに記録することができます。これにより、プライバシーを保護しつつ、信頼性の高いトランザクションを実現することが可能になります。
+これOnchain Verificaionと呼ばれるテクニックです。 これはTornado Cash を始めとする多くの zk-SNARKs を活用したアプリケーションで採用されている重要な技術です。スマートコントラクト上で証明を検証することにより、特定の情報を秘匿したまま計算の正当性のみをブロックチェーンに記録することができます。これにより、プライバシーを保護しつつ、信頼性の高いトランザクションを実現することが可能になります。
 
 クライアント上でユーザーが入力した値から証明を作成する方法は、circom 2 Documentation の [Verifying from a Smart Contract](https://docs.circom.io/getting-started/proving-circuits/#verifying-from-a-smart-contract) snarkjs の GitHub の README の [25. Turn the verifier into a smart contract](https://github.com/iden3/snarkjs?tab=readme-ov-file#25-turn-the-verifier-into-a-smart-contract) 以降の項目を参照してください。
 
