@@ -272,14 +272,22 @@ circomlib は、よく使われる回路パターンをテンプレートとし�
 
 circomlibは npm パッケージとして提供されているため、プロジェクトのディレクトリで以下のコマンドを実行してインストールします。
 
-`over20` ディレクトリに移動し、今回は npm コマンドを使用して、 circomlib をディレクトリ内にローカルインストールしてください。
+`over20` ディレクトリに移動し、npm または yarn を使用して、 circomlib をディレクトリ内にローカルインストールしてください。
 
+**npm の場合**
 ```bash
 npm init -y
 ```
-
 ```bash
 npm install circomlib
+```
+
+**yarn の場合**
+```bash
+yarn init -y
+```
+```bash
+yarn add circomlib
 ```
 
 circom内 の `include` 文でプロジェクトの `node_modules` ディレクトリから circomlib を探すためにパスを記述する必要があります。
