@@ -388,3 +388,5 @@ log(value);
 - [circomlibjs](https://github.com/iden3/circomlibjs)
 - [snarkjs](https://github.com/iden3/snarkjs)
 - [zkrepl.dev](https://zkrepl.dev/)  （オンラインで circom を気軽に試せるプレイグラウンド）
+- [circom tester](https://github.com/iden3/circom_tester) （circom のテスト関連ツール）
+- [circomkit](https://github.com/erhant/circomkit) （circom のテスト関連ツール）
