@@ -2,15 +2,15 @@
 
 このセクションでは、 [Tornado Cats の circom についての章](https://minaminao.github.io/tornado-cats/circuit/)を読み進めながら、いくつかの資料や演習を追加で確認していきます。
 
-## circom の概要
+## 1. circom の概要
 
 Tornado Cats の[ゼロ知識証明の回路の基礎](https://minaminao.github.io/tornado-cats/circuit/)と [Circom とは](https://minaminao.github.io/tornado-cats/circuit/circom/)を読んでください。
 
-## 環境構築
+## 2. 環境構築
 
 circom を利用するためには、主に circom コンパイラ本体と、証明生成・検証のための snarkjs 等のライブラリをセットアップする必要があります。
 
-### circom と snarkjs のインストール
+### 2.1 circom と snarkjs のインストール
 
 Circom 2 Documantation の [Installation](https://docs.circom.io/getting-started/installation/) を参考に circom をインストールしてください。
 
@@ -20,7 +20,7 @@ circom には rust が必要なことに注意してください。
 
 snarkjs には node.js の v18 以上が必要なことに注意してください。
 
-## circom によるゼロ知識証明の流れ
+## 3. circom によるゼロ知識証明の流れ
 
 この GitHub のリポジトリをローカルに `git clone` してください。もし、まだ環境構築が完了していない場合には、 GitHub Codespaces というクラウド環境で動かしてください。
 
@@ -30,7 +30,7 @@ GitHub Codespaces を使用する場合は、「<> Code 」ボタンを押した
 また、その際の作業ディレクトリは、 `/tornado-cats` になります。
 事前に `cd` コマンドで移動してください。
 
-### コンパイルから検証までの流れを俯瞰する
+### 3.1 コンパイルから検証までの流れを俯瞰する
 
 ![circom と snarkjs の流れ](circom_and_snarkjs.png)
 
@@ -84,7 +84,7 @@ snarkjs zkey export solidityverifier multiplier2_0001.zkey verifier.sol
 
 この Solidity Verifier については、後ほど実装演習で触れることになります。
 
-## circom 言語の基本
+## 4. circom 言語の基本
 
 circom には、大きく分けて2つの役割があります。
 
@@ -95,11 +95,11 @@ circom には、大きく分けて2つの役割があります。
 
 この2つの役割を同時にコーディングすることが、利便性と後述する特有の制限に繋がっています。
 
-### インクルード
+### 4.1 インクルード
 
 `include` : 外部のテンプレートをインポートする。
 
-### 変数の宣言
+### 4.2 変数の宣言
 
 変数の宣言には、 `signal` と `var` と `component` があります。
 
@@ -140,7 +140,7 @@ template Multiplier(){
 component main {public [in1]} = Multiplier();
 ```
 
-### 代入演算子
+### 4.3 代入演算子
 
 **`<==`** : 制約と計算の両方を同時に行う代入演算子です。具体的には、代入と共に、両辺が等しいという制約を追加します。
 
@@ -175,7 +175,7 @@ template MultiplySame() {
 }
 ```
 
-### template
+### 4.4 template
 circom では、回路は `template` を使って定義し、制約を生成します。
 
 前述のとおり、`component` を使用してインスタンス化します。
@@ -195,7 +195,7 @@ template CheckIsEqual() {
 }
 ```
 
-### function
+### 4.5 function
 circom の `function` は、計算を実行するために使用されます。`template` とは異なり、回路の制約を生成しません。
 
 `function` は `signal` ではなく `var` 変数に対して操作を行います。
@@ -213,23 +213,23 @@ function f(x) {
 }
 ```
 
-### 基本演算子
+### 4.6 基本演算子
 
 circom にはブール演算子、算術演算子、ビット演算子があります。
 これらは一般的なプログラミング言語と同様の動作をしますが、 算術演算子は p を法とする数値として動作することに注意してください。
 
 具体的な基本演算子については、Circom 2 Documentation の [Basic Operators](https://docs.circom.io/circom-language/basic-operators/) を参照してください。
 
-## コーディングにおける circom 特有の制限
+## 5. コーディングにおける circom 特有の制限
 
-### signal と 配列
+### 5.1 signal と 配列
 
 `array[signal_value]` のように配列のインデックスに signal を使用することはできません。
 signal の値を用いて配列の要素を指定してしまうと、未知の値によって回路の構造が動的に変わることになってしまうためです。
 
 また、コンパイル時に配列のサイズを定数で確定させる必要があります。
 
-### 分岐とループ
+### 5.2 分岐とループ
 
 circom の回路は、コンパイル時にその構造が静的に決定されます。そのため、証明生成時まで値が確定しない `signal` を、 `if` 文や `for` ループの条件式に直接使用して回路の制約を動的に変更することはできません。`signal` の値に依存する条件分岐を実装するには、`if` 文などの制御構文ではなく、算術的な制約に置き換える必要があります。
 
@@ -257,15 +257,15 @@ for (var i = 0; i < 10; i++) {
 }
 ```
 
-### その他の制限
+### 5.3 その他の制限
 
 他の制限事項についても確認してみたい方は、[Circom 2 Documentation](https://docs.circom.io/) の The circom language を参照してください。
 
-## circomlib の活用
+## 6. circomlib の活用
 
 circomlib は、よく使われる回路パターンをテンプレートとして提供するライブラリです。分岐やループを含む複雑な処理を、より簡単に記述できます。
 
-### circomlib のインストール
+### 6.1 circomlib のインストール
 
 circomlibは npm パッケージとして提供されているため、プロジェクトのディレクトリで以下のコマンドを実行してインストールします。
 
@@ -289,7 +289,7 @@ include "node_modules/circomlib/circuits/comparators.circom";
 over20.circom で、circomlib を使用してコンパイルしてみてください。
 また、余裕があれば気になるテンプレートを試してください。
 
-### 主要なテンプレート
+### 6.2 主要なテンプレート
 
 #### ビット変換（Bit Operations）
 - `Num2Bits(n)`: 数値を n ビットの配列に変換
@@ -328,7 +328,7 @@ circomlib の比較器では、比較したい数値が最大で何ビットの�
 
 `circomlibjs` は、 `circomlib` の回路の witness を計算するための JavaScript ライブラリです。主に `circomlib` の回路をテストする際に使用されます。詳細については、[circomlibjs の GitHub リポジトリ](https://github.com/iden3/circomlibjs) を参照してください。
 
-## 練習問題
+## 7. 練習問題
 
 ### 1. 3個の入力シグナルを持つ乗算器
 
@@ -367,7 +367,7 @@ log(value);
 [ZKU Week 2 Assignment](https://zku.gnomio.com/mod/assign/view.php?id=119)
 
 
-## 参考資料
+## 8. 参考資料
 
 ### 公式ドキュメント
 -   [Circom 2 Documentation](https://docs.circom.io/)
