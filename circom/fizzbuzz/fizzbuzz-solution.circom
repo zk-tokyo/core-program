@@ -3,7 +3,7 @@ pragma circom 2.1.2;
 include "node_modules/circomlib/circuits/comparators.circom";
 include "node_modules/circomlib/circuits/mux1.circom";
 
-template DivRem(divisor, nbits) {
+template DivRem(divisor, nBits) {
     signal input dividend;
     signal output quotient;
     signal output remainder;
@@ -13,7 +13,7 @@ template DivRem(divisor, nbits) {
 
     divisor * quotient + remainder === dividend;
 
-    component lt = LessThan(nbits);
+    component lt = LessThan(nBits);
     lt.in[0] <== remainder;
     lt.in[1] <== divisor;
     lt.out === 1;
