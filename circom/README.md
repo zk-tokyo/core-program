@@ -161,8 +161,6 @@ component main {public [in1]} = Multiplier();
 つまり、以下の2つのコードは同等です。
 
 ```circom
-pragma circom 2.1.2;
-
 template Multiply() {
     signal input a;
     signal input b;
