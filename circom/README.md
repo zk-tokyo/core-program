@@ -101,11 +101,31 @@ circom には、大きく分けて2つの役割があります。
 
 この2つの役割を同時にコーディングすることが、利便性と後述する特有の制限に繋がっています。
 
-### 4.1 インクルード
+### 4.1 template
+circom では、回路は `template` を使って定義し、制約を生成します。
+
+前述のとおり、`component` を使用してインスタンス化します。
+
+以下のように使用できます。
+
+```circom
+template CheckIsEqual() {
+  signal input a;
+  signal input b;
+  signal output c;
+
+  component eq = IsEqual();  // 外部の template
+  eq.in[0] <== a;  // 入力値１
+  eq.in[1] <== b;  // 入力値２
+  c <== eq.out;  // 出力値
+}
+```
+
+### 4.2 インクルード
 
 `include` : 外部のテンプレートをインポートする。
 
-### 4.2 変数の宣言
+### 4.3 変数の宣言
 
 変数の宣言には、 `signal` と `var` と `component` があります。
 
@@ -146,7 +166,7 @@ template Multiplier(){
 component main {public [in1]} = Multiplier();
 ```
 
-### 4.3 代入演算子
+### 4.4 代入演算子
 
 **`<==`** : 制約と計算の両方を同時に行う代入演算子です。具体的には、代入と共に、両辺が等しいという制約を追加します。
 
@@ -176,26 +196,6 @@ template MultiplySame() {
     signal output c;
     
     c <== a * b;
-}
-```
-
-### 4.4 template
-circom では、回路は `template` を使って定義し、制約を生成します。
-
-前述のとおり、`component` を使用してインスタンス化します。
-
-以下のように使用できます。
-
-```circom
-template CheckIsEqual() {
-  signal input a;
-  signal input b;
-  signal output c;
-
-  component eq = IsEqual();  // 外部の template
-  eq.in[0] <== a;  // 入力値１
-  eq.in[1] <== b;  // 入力値２
-  c <== eq.out;  // 出力値
 }
 ```
 
