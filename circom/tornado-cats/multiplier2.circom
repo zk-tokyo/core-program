@@ -6,7 +6,7 @@ template Multiplier2 () {
    // TODO: シグナルを宣言する
 
 
-   // TODO: 制約
+   // TODO: 制約をつける
 
 }
 
