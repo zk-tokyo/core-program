@@ -3,11 +3,11 @@ pragma circom 2.1.2;
 // 回路の定義
 template Multiplier2 () {
 
-   // シグナルの宣言
+   // TODO: シグナルを宣言する
 
 
-   // 制約
+   // TODO: 制約をつける
 
 }
 
-// インスタンス化
+// TODO: インスタンス化する
