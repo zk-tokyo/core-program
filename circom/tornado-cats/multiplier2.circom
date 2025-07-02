@@ -3,7 +3,7 @@ pragma circom 2.1.2;
 // 回路の定義
 template Multiplier2 () {
 
-   // TODO: シグナルの宣言
+   // TODO: シグナルを宣言する
 
 
    // TODO: 制約
