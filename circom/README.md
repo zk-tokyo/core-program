@@ -94,7 +94,7 @@ snarkjs r1cs info multiplier2.r1cs
 
 [ウィットネスの計算（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/witness-computation/)
 
-**5. ゼロ知識証明のセットアップ**
+**5. Trusted Setup**
 
 [ゼロ知識証明のセットアップ（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/setup-zkp/)
 
