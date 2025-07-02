@@ -10,4 +10,4 @@ template Multiplier2 () {
 
 }
 
-// TODO: インスタンス化
+// TODO: インスタンス化する
