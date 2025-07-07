@@ -37,3 +37,7 @@ exercises:
 whiteboard_sessions:
   - changed-files:
       - any-glob-to-any-file: '**/whiteboard-sessions/**'
+
+final_projects:
+  - changed-files:
+      - any-glob-to-any-file: 'final-projects/**'
