@@ -1,175 +1,209 @@
-ゼロ知識証明の学習ロードマップですね。各世代の技術を順に理解できるよう、詳細なプランを立ててみましょう。
+# ゼロ知識証明学習ロードマップ
+
+このロードマップの読み方
+このロードマップは、ゼロ知識証明技術の3つの世代を順序立てて学習するための体系的なガイドです。
+学習の原則:
+
+段階的な依存関係: 各技術は前段階の理解を前提として構築されています
+必須前提の明記: 各段階で必要な前提知識を明確に示しています
+技術的系譜の重視: 例えばPlonky2はPlonkとSTARK（FRI）の理解が必須です
+
+ロードマップの構造:
+
+基礎知識: 全ての学習に必要な数学的・暗号学的基盤
+第一世代: Trusted Setupの課題解決（Groth16 → Plonk → STARK）
+第二世代: Recursion ProofとFolding Scheme（Plonky2, Halo2, Nova）
+第三世代: zkVMのためのField Size最適化（Binius, Circle STARK）
+
+学習順序: 基礎知識を習得後、段階1から順番に進むことを強く推奨します。各段階内でも示された順序（例：Groth16 → Plonk → STARK）に従うことで、技術的な理解の積み重ねが効率的に行えます。
+
+## 基礎知識（必須前提）
+
+### 数学的基礎
+- **楕円曲線暗号学**
+  - 有限体上の楕円曲線
+  - Pairing（双線形写像）の理論
+  - BLS12-381, BN254などの具体的な曲線
+- **多項式理論**
+  - 有限体上の多項式演算
+  - 多項式補間（Lagrange補間）
+  - 多項式コミット（KZG commitment）
+- **線形代数**
+  - ベクトル空間、部分空間
+  - 行列演算、階数
+  - 線形写像
+
+### 暗号学的基礎
+- **ゼロ知識証明の定義**
+  - Completeness（完全性）
+  - Soundness（健全性）
+  - Zero-knowledge（ゼロ知識性）
+- **Interactive Proofs**
+  - Fiat-Shamir変換
+  - Random Oracle Model
+- **Commitment Schemes**
+  - Vector Commitments
+    - Pedersen Commitment
+    - Merkle Tree
+  - Polynomial Commitment
+    - KZG Commitment
+    - FRI-based Commitment
+    - IPA
 
 ---
 
-## ゼロ知識証明 学習ロードマップ
+## 第一世代：Trusted Setupの課題解決
 
-このロードマップは、ゼロ知識証明の理論を段階的に理解することを目的としています。各世代の主要なプロトコルとその基盤となる技術を習得できるよう構成されています。
+### 段階1：Groth16の理解
+**前提知識**: 楕円曲線暗号学、Pairing理論、多項式理論
 
-### 前提知識
+**学習内容**:
+- **QAP（Quadratic Arithmetic Program）**
+  - 計算回路からQAPへの変換
+  - R1CS（Rank-1 Constraint System）
+  - QAPの多項式表現
+- **Groth16プロトコル**
+  - Setup phase（CRS生成）
+  - Proving algorithm
+  - Verification algorithm
+- **Trusted Setupの問題**
+  - Toxic wasteとは何か
+  - Universal vs Circuit-specific setup
 
-ゼロ知識証明を学ぶ上で、以下の知識があるとスムーズに進められます。必要に応じて、適宜復習してください。
 
-* **線形代数**: ベクトル、行列、多項式など
-* **抽象代数**: 群、環、体、有限体、楕円曲線
-* **数論**: 合同計算、素数、原始根
-* **計算量理論**: NP問題、P≠NP予想、計算困難性
-* **暗号理論の基本**: ハッシュ関数、公開鍵暗号、デジタル署名、コミットメントスキーム
 
-### 第零世代: 共通基盤技術の理解
+### 段階2：Plonkの理解
+**前提知識**: Groth16、KZG多項式コミット
 
-ゼロ知識証明プロトコルの根幹を理解するために不可欠な共通基盤技術を習得します。
+**学習内容**:
+- **Plonkishアリスメティック**
+  - Copy constraintの仕組み
+  - Custom gatesの設計
+  - Permutation argumentの理論
+- **Plonkプロトコル**
+  - Universal setup（Powers of Tau）
+  - Quotient polynomialの構築
+  - Opening proofの生成
+- **Plonk vs Groth16の比較**
+  - Universal setupの利点
+  - 証明サイズと検証時間の比較
 
-1.  **多項式の概念と性質**
-    * 多項式の表現、加算、乗算
-    * 多項式の根と因数定理
-    * ラグランジュ補間
-    * 多項式のコミットメントスキーム（例: Pedersenコミットメント、KZGコミットメントの概論）
-2.  **有限体（Galois Field）**
-    * $\mathbb{F}_p$と$\mathbb{F}_{p^k}$
-    * 有限体上の演算（加算、乗算、逆元）
-    * 楕円曲線暗号の基礎（楕円曲線上の点と加算、ペアリングの概念）
-3.  **情報理論的コミットメントと計算論的コミットメント**
-    * 拘束性（Bindingness）と隠匿性（Hiding）
-    * ペダーセンコミットメント、ダマーガルト・チェンコミットメントなど
-4.  **対話型証明システム (Interactive Proof Systems)**
-    * プロトコルの構成要素（Prover, Verifier）
-    * 健全性（Soundness）、完全性（Completeness）、ゼロ知識性（Zero-Knowledge）
-    * シャミアの秘密分散スキーム（Zero-Knowledge Proofの初期の概念を理解するため）
-5.  **SNARKの基本概念**
-    * Succinct Non-interactive ARgument of Knowledge
-    * 健全性、完全性、簡潔性、ゼロ知識性
-    * チューリング完全性との関連
-    * QAP (Quadratic Arithmetic Program) の導入
 
-### 第一世代: Trusted Setupの課題と解決策
 
-Trusted Setupの問題に取り組み、その後のプロトコルの基礎となる技術を理解します。
+### 段階3：STARKの理解
+**前提知識**: Merkle Tree、ハッシュ関数、有限体理論
 
-#### 1. Groth16
+**学習内容**:
+- **FRI（Fast Reed-Solomon Interactive Oracle Proof）**
+  - Reed-Solomon符号の基礎
+  - FRIプロトコルの詳細
+  - Query phaseの最適化
+- **STARK構造**
+  - Algebraic Intermediate Representation（AIR）
+  - Constraint polynomialの構築
+  - Trace polynomialの生成
+- **STARKの利点**
+  - Quantum resistance
+  - Transparent setup（trusted setupなし）
+  - Scalabilityの理論
 
-* **楕円曲線ペアリングの深堀り**
-    * 性質、双線形性、効率的な計算方法
-* **QAP (Quadratic Arithmetic Program) の詳細**
-    * 算術回路からQAPへの変換プロセス
-    * R1CS (Rank 1 Constraint System) からQAPへの変換
-* **Groth16プロトコルの詳細**
-    * Trusted Setupの役割と生成される公開パラメータ (CRS: Common Reference String)
-    * 証明生成と検証のアルゴリズム
-    * コンパクトな証明サイズと検証時間
-    * Trusted Setupの課題（再利用不可、信頼性）
 
-#### 2. Plonk
-
-* **Permutation Argument**
-    * 並べ替えの制約を効率的に証明する仕組み
-    * 多項式コミットメントと組み合わせた使い方
-* **Custom Gates**
-    * 特定の計算を効率的に表現するための拡張
-* **Lookup Tables**
-    * 事前に定義されたルックアップテーブルを利用した効率化
-* **KZGコミットメントスキームの詳細**
-    * 多項式コミットメントの仕組み、オープン方法
-    * コンパクトな証明サイズへの貢献
-* **Plonkプロトコルの詳細**
-    * Universal Trusted Setupの概念とその利点
-    * Groth16との比較（柔軟性、証明生成時間）
-
-#### 3. STARK (Scalable Transparent ARgument of Knowledge)
-
-* **FRI (Fast Reed-Solomon Interactive Oracle Proofs of Proximity)**
-    * 多項式が低次数であることを対話的に証明する仕組み
-    * Reed-Solomon符号の概念とエラー訂正
-    * Merkle Treeと組み合わせた効率的な証明
-* **AIR (Algebraic Intermediate Representation)**
-    * 計算を代数的な制約に変換する仕組み
-* **Transparent Setup**
-    * Trusted Setupが不要であることの利点と仕組み
-    * ランダム性の生成方法
-* **STARKプロトコルの詳細**
-    * 多項式コミットメントとしてFRIを使用
-    * 大規模な計算に対するスケーラビリティ
-    * 証明サイズと検証時間のトレードオフ（Groth16/Plonkと比較して大きいが、計算量に比例しない）
-
-### 第二世代: 証明時間の短縮とスケーラビリティの追求
-
-証明の再帰的合成やフォールディングスキームによって、より大規模な計算の証明を可能にする技術を理解します。
-
-#### 1. Plonky2
-
-* **PlonkとSTARK (FRI) の復習と統合的な理解**
-    * Plonkの算術回路の柔軟性
-    * STARKのTransparent Setupとスケーラビリティ
-* **Recursive Proofsの概念**
-    * あるゼロ知識証明の検証を、別のゼロ知識証明の中で行う
-    * 無限のスケーリングを可能にする仕組み
-* **Plonky2のアーキテクチャ**
-    * PlonkとSTARKを組み合わせたハイブリッド構造
-    * 再帰的な証明生成の具体的なメカニズム
-    * 効率的な再帰を実現するための工夫
-
-#### 2. Halo2
-
-* **Folding Schemeの概念**
-    * 複数の証明を一つの短い証明に「折りたたむ」仕組み
-    * 検証コストを削減する新しいアプローチ
-* **Haloの基本的な仕組み**
-    * 累積的な検証（Accumulation Schemes）
-    * Trusted Setup不要の継続的な証明合成
-* **Halo2のアーキテクチャ**
-    * Plonkishな制約システムとの統合
-    * Recursive ProofsとFolding Schemeの組み合わせ
-    * 汎用的な証明システムとしての応用
-
-#### 3. Nova
-
-* **IVC (Incrementally Verifiable Computation) の概念**
-    * 計算ステップを順次証明し、検証状態を累積していく
-    * 非常に長い計算チェーンの効率的な証明
-* **Folding Schemeのより抽象的な理解**
-    * 特にzk-SNARKに依存しない汎用的なフレームワークとしてのFolding
-* **Novaのプロトコルの詳細**
-    * 非インタラクティブなIVC
-    * Recursive SNARKsの代替としての効率性
-    * VMの実行証明への応用
-
-### 第三世代: zkVMとField Sizeの最適化
-
-zkVMの効率化、特に有限体のサイズを小さくすることで、より広範なアプリケーションへの適用を目指す技術を理解します。
-
-#### 1. Binius
-
-* **バイナリフィールド（$\mathbb{F}_2$）の基礎**
-    * 有限体の中でも最も小さいフィールド
-    * ビット演算ベースの効率的な計算
-* **Linear CodeとReed-Muller Code**
-    * 符号理論の基本概念
-    * 低次元多項式の表現と検証
-* **Biniusプロトコルの詳細**
-    * バイナリフィールド上でのゼロ知識証明
-    * 特にzkVMにおける命令実行の証明
-    * 従来のSNARKsと比較した性能と制約
-
-#### 2. Circle STARK
-
-* **STARKの復習と特定のフィールドへの最適化**
-    * 特に小規模な有限体でのSTARKの課題
-* **Circle Curve / Circle Group**
-    * 特別な構造を持つ曲線（楕円曲線とは異なる）
-    * 小規模なフィールド上での効率的な演算
-* **Circle STARKプロトコルの詳細**
-    * Circle Curveを利用したSTARKの最適化
-    * zkVMの命令セットに特化した効率的な証明
-    * フィールドサイズが小さいことの具体的なメリット（計算リソース、メモリ使用量）
 
 ---
 
-### 学習の進め方と補足
+## 第二世代：Recursion ProofとFolding Scheme
 
-* **論文を読む**: 各プロトコルのオリジナル論文は理解を深める上で非常に重要です。まずは概要を掴み、徐々に詳細に入り込んでください。
-* **実装に触れる**: ゼロ知識証明のライブラリ（例えば bellman, arkworks, plonky2, halo2, nova-scotia など）のコードを読み、実際に動かしてみることで、理論がどのように実装されているかを理解できます。
-* **コミュニティに参加する**: Discordなどのコミュニティで質問したり、議論に参加したりすることで、新しい知見を得られます。
-* **ブログや解説記事を読む**: 難解な概念を分かりやすく解説しているブログや記事は、初学者にとって非常に役立ちます。
-* **数学的な基盤を固める**: 特に線形代数、抽象代数、数論はゼロ知識証明の理解に不可欠です。必要に応じて、適宜復習・学習をしてください。
+### 段階4：Plonky2の理解
+**前提知識**: Plonk、STARK（FRI）、Goldilocks体
 
-このロードマップが、あなたのゼロ知識証明学習の一助となれば幸いです。頑張ってください！
+**学習内容**:
+- **Plonky2のアーキテクチャ**
+  - PlonkとSTARKの融合
+  - Goldilocks体（p = 2^64 - 2^32 + 1）の選択理由
+  - Poseidon hash functionの使用
+- **Recursion技術**
+  - 証明の証明（Proof of Proof）
+  - Circuit-friendly hash functions
+  - Verifier circuitの効率化
+- **実装最適化**
+  - Parallelization技術
+  - Memory効率化
+  - Lookup argumentsの活用
+
+
+
+### 段階5：Halo2の理解
+**前提知識**: Plonk、KZG、Inner Product Arguments
+
+**学習内容**:
+- **Halo2の設計思想**
+  - Accumulation schemeの概念
+  - Nested recursionの実現
+  - Amortized polynomial commitments
+- **Pasta curves**
+  - Pallas/Vesta曲線ペアの特性
+  - Cycle of elliptic curvesの理論
+- **Lookup arguments**
+  - Plookupの理論
+  - Table lookupの効率化
+  - Custom lookupの実装
+
+
+
+### 段階6：Novaの理解
+**前提知識**: Halo2、Relaxed R1CS
+
+**学習内容**:
+- **Incrementally Verifiable Computation（IVC）**
+  - IVCの定義と応用
+  - Folding schemeの概念
+  - Step circuitの設計
+- **Novaプロトコル**
+  - Relaxed R1CSの導入
+  - Folding witnessの生成
+  - Accumulation verifierの実装
+- **Supernova拡張**
+  - Multiple instruction setsの対応
+  - Uniform vs Non-uniform computation
+
+
+
+---
+
+## 第三世代：zkVMのためのField Size最適化
+
+### 段階7：Biniusの理解
+**前提知識**: Binary field theory、Multilinear polynomial
+
+**学習内容**:
+- **Binary fieldの利点**
+  - CPU-nativeな演算
+  - 32/64-bit操作の効率化
+  - Memory accessの最適化
+- **Multilinear polynomialの活用**
+  - Bivariate polynomialの扱い
+  - Sumcheck protocolの応用
+  - Tensor productの理論
+- **Biniusプロトコル**
+  - Binary fieldでの証明生成
+  - Commitment schemeの設計
+  - Verificationの効率化
+
+
+
+### 段階8：Circle STARKの理解
+**前提知識**: STARK、Circle group theory
+
+**学習内容**:
+- **Circle groupの数学**
+  - Circle上の群演算
+  - FFT on circleの理論
+  - Mersenne31 fieldの特性
+- **Circle STARKプロトコル**
+  - Circle-based polynomialの構築
+  - Constraint systemの拡張
+  - Proximity testingの改良
+- **zkVMでの応用**
+  - RISC-V instructionの効率的表現
+  - Memory consistencyの証明
+  - Program counterの処理
