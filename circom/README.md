@@ -1,6 +1,6 @@
 # circom の基礎
 
-このセクションでは、 [Tornado Cats の circom についての章](https://minaminao.github.io/tornado-cats/circuit/)を読み進めた後で、circom の基礎を確認し、練習問題に挑戦します。
+このセクションでは、 [Tornado Cats 3章](https://minaminao.github.io/tornado-cats/circuit/)を読み進めた後で、circom の基礎を確認し、練習問題に挑戦します。
 
 - [0. はじめに](#0-はじめに)
 - [1. circom の概要](#1-circom-の概要)
