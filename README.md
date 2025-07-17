@@ -52,7 +52,7 @@ Core Programはゼロ知識証明の理論と実装の理解を促し、Ethereum
 | 週 | スライド | 解説動画 | ステータス |
 | --- | --- | --- | --- |
 | week0 | [有限体と楕円曲線](https://docs.google.com/presentation/d/1faqAS3ryA0RGwsFvkEdv5BHr8J9TX4STkJuqkxZAWrc/edit?usp=sharing) | https://youtu.be/4KaWvuNfG6I |  |
-| week1 | [ゼロ知識証明入門](https://docs.google.com/presentation/d/1wQd2pQooTD884b2qC4QV-43oG0jJ5uyj9heW1GQeFQs/edit?usp=sharing) | 準備中 | 🔄 作成中 |
+| week1 | [ゼロ知識証明入門](https://docs.google.com/presentation/d/1wQd2pQooTD884b2qC4QV-43oG0jJ5uyj9heW1GQeFQs/edit?usp=sharing) | https://youtu.be/qG24ys5rkCU |  |
 | week2 | コミットメントスキーム・PLONK | 準備中 | 🔄 作成中 |
 | week3 | Groth16 | 準備中 | 🔄 作成中 |
 | week4 | zk-STARK | 準備中 | 🔄 作成中 |
