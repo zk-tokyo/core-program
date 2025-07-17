@@ -1,7 +1,5 @@
 # circom の基礎
 
-このセクションでは、 [Tornado Cats 3章](https://minaminao.github.io/tornado-cats/circuit/)を読み進めた後で、circom の基礎を確認し、練習問題に挑戦します。
-
 - [0. はじめに](#0-はじめに)
 - [1. circom の概要](#1-circom-の概要)
 - [2. 環境構築](#2-環境構築)
@@ -34,7 +32,7 @@
 
 ## 0. はじめに
 
-このドキュメントでは、Tornado Cats の circom についての章を読んだ後、circomの基礎を学びます。解説を読み進めながら実際に手を動かし、最後に練習問題を解くことで、実践的なスキルを身につけることを目指します。
+このドキュメントでは、 [Tornado Cats 3章](https://minaminao.github.io/tornado-cats/circuit/)を読んだ後、circomの基礎を学びます。解説を読み進めながら実際に手を動かし、最後に練習問題を解くことで、実践的なスキルを身につけることを目指します。
 
 このチュートリアルの学習フローは以下の通りです。
 
