@@ -77,10 +77,6 @@ snarkjs には node.js の v18 以上が必要なことに注意してくださ�
 
 GitHub Codespaces を使用する場合は、「<> Code 」ボタンを押した後 Codespaces タブに移動して、「 Create codespace on main 」ボタンを押してください。
 
-環境が整ったら、Tornado Cats の 以下のページを読みながら、ご自身のローカル環境または Codespaces 上で一つずつ実際に手を動かしてみてください。
-また、その際の作業ディレクトリは、 `/tornado-cats` になります。
-事前に `cd` コマンドで移動してください。
-
 ## 3. circom を用いたゼロ知識証明の全体像
 
 ### 3.1 コンパイルから検証までの流れを俯瞰する
@@ -89,40 +85,15 @@ GitHub Codespaces を使用する場合は、「<> Code 」ボタンを押した
 
 *画像引用元: [Circom 2 Documentation - Visual summary](https://docs.circom.io/#visual-summary)*
 
-**1. 回路の例:因数分解**
-
-[回路の例:因数分解（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/factorization/)
-
-**2. 回路のコンパイル**
-
-[回路のコンパイル（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/compile/)
+Tornado Cats 3章 の [回路の例:因数分解](https://minaminao.github.io/tornado-cats/circuit/factorization/)から[ゼロ知識証明の生成と検証](https://minaminao.github.io/tornado-cats/circuit/generation-and-verification/)までのページを読みながら、ご自身のローカル環境または Codespaces 上で一つずつ実際に手を動かしてみてください。
+また、その際の作業ディレクトリは、 `/tornado-cats` になります。
+事前に `cd` コマンドで移動してください。
 
 circom コマンドによるコンパイルのより詳しい各オプションの説明は、Circom 2 Documentation の [Compiling our circuit](https://docs.circom.io/getting-started/compiling-circuits/) を参照してください。
 
-**3. Rank 1 Constraint System**
+また、snarkjs によるセットアップのより詳しい説明は、snarkjs の GitHub の README の [Guide](https://github.com/iden3/snarkjs/blob/master/README.md#guide) を参照してください。
 
-[Rank 1 Constraint System（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/r1cs/)
-
-今回試作している回路の R1CS の情報を出力するコマンドは以下になります。
-```bash
-snarkjs r1cs info multiplier2.r1cs
-```
-
-**4. ウィットネスの計算**
-
-[ウィットネスの計算（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/witness-computation/)
-
-**5. Trusted Setup**
-
-[ゼロ知識証明のセットアップ（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/setup-zkp/)
-
-snarkjs によるセットアップのより詳しい説明は、snarkjs の GitHub の README の [Guide](https://github.com/iden3/snarkjs/blob/master/README.md#guide) を参照してください。
-
-**6. ゼロ知識証明の生成と検証**
-
-[ゼロ知識証明の生成と検証（Tornado Cats）](https://minaminao.github.io/tornado-cats/circuit/generation-and-verification/)
-
-**7. スマートコントラクトからの検証**
+### 3.2 スマートコントラクトからの検証
 
 Tornado Cats には記載がありませんでしたが、 snarkjs で検証をスマートコントラクト上で行うための Solidity の関数とファイルを生成することができます。
 
