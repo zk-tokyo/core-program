@@ -52,7 +52,7 @@ Core Programはゼロ知識証明の理論と実装の理解を促し、Ethereum
 | 週 | スライド | 解説動画 | ステータス |
 | --- | --- | --- | --- |
 | week0 | [有限体と楕円曲線](https://docs.google.com/presentation/d/1faqAS3ryA0RGwsFvkEdv5BHr8J9TX4STkJuqkxZAWrc/edit?usp=sharing) | https://youtu.be/4KaWvuNfG6I |  |
-| week1 | ゼロ知識証明入門 | 準備中 | 🔄 作成中 |
+| week1 | [ゼロ知識証明入門](https://docs.google.com/presentation/d/1wQd2pQooTD884b2qC4QV-43oG0jJ5uyj9heW1GQeFQs/edit?usp=sharing) | https://youtu.be/qG24ys5rkCU |  |
 | week2 | コミットメントスキーム・PLONK | 準備中 | 🔄 作成中 |
 | week3 | Groth16 | 準備中 | 🔄 作成中 |
 | week4 | zk-STARK | 準備中 | 🔄 作成中 |
@@ -156,7 +156,7 @@ PR を作成すると、自動的にその週の担当メンターにレビュ�
 |yawn  |week5  | yawn と申します。Week5 の circom の基礎を担当させていただきました。昨年の Core Program の参加者で、まだまだ勉強中の身ですが、皆様の学習のお役に立てることがありましたら幸いです。エンジニアコミュニティの UNCHAIN を経て、 HackDays （ DAO ツールの Toban などを開発）や、 Henkaku Community や、 Code for Japan で活動しております。 よろしくお願いいたします！|
 |ラーメンニョッキ教授|week5|ラーメンニョッキ教授です。去年のCore Program参加者です。このプログラムをきっかけに42Tokyoというエンジニア養成機関に入学いたしました。week5,Poseidon Hashを担当しました。深堀り気質な人間なので同じ気質の人がいればdiscordで相談してください。|
 |iYusuke  |week5  | yusuke と申します。Week5 の 教材作成（スライド部分）を担当させていただきました。昨年の Core Program に参加しました。金融機関でWeb3やデジタルアセットなど担当しており、このプログラムには個人的に自己研鑽として参加しています。技術の理解や実装の部分は心もとないですが、昨年から引き続き勉強を続けています。 よろしくお願いいたします！|
-| sheagrief | その他 | 初めまして、sheagriefです。私は2年前のCore Programに参加し、それ以降Web3領域に携わっています。普段は大学院で数学の研究を行う傍ら、ZKやMPCに特に興味を持っており、PSEのグラントなどを通じて研究開発などもしています。教材作成は今回行っていませんが、その他の面で参加者の皆さんをサポートできればと思います。 |  
+| sheagrief | その他 | 初めまして、sheagriefです。私は2年前のCore Programに参加し、それ以降Web3領域に携わっています。普段は大学院で数学の研究を行う傍ら、ZKやMPCに特に興味を持っており、PSEのグラントなどを通じて研究開発などもしています。教材作成は今回行っていませんが、その他の面で参加者の皆さんをサポートできればと思います。 |
 
 教材について疑問があれば[Discord](https://discord.gg/DPj88upb)の#questionにて気軽に質問してください。ただし、その週の担当者にメンションするようにお願いします。
 事務的な質問はshoukiにメンションしてください。プライベートな内容以外はパブリックなチャンネルで自由に発言していただいて構いません。
