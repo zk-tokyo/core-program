@@ -119,9 +119,9 @@ $ git clone https://github.com/zk-tokyo/core-program.git
 > プログラム期間中（i.e., 課題の取り組み中）に、本体のリポジトリーに変更が加わることが多々あります。ローカル環境にリモート環境を追加して、ステップ4の PR 作成前にローカル環境を最新の内容にアップデートしておくことをお勧めします。
 >
 > ```sh
-> # upstreamという名前でリモート環境を追加
+> # add remote repo as upstream
 > $ git remote add upstream https://github.com/zk-tokyo/core-program.git
-> # リモート環境の変更をローカル環境に反映
+> # fetch & merge changes from remote repo
 > $ git pull upstream
 > ```
 
