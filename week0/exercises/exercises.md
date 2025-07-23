@@ -51,10 +51,15 @@ $10110101_{2} - 0110110_{2} \equiv 1 \pmod 2$
 
 $10000011$
 
-$10110101$ を $1 \alpha^7 + 0 \alpha^6 + 1 \alpha^5 + 1 \alpha^4 + 0 \alpha^3 + 1 \alpha^2 + 0 \alpha^1 + 1 \in \mathbb{F}_{2^8}$ ,
-$0110110$ を $0 \alpha^6 + 1 \alpha^5 + 1 \alpha^4 + 0 \alpha^3 + 1 \alpha^2 + 1 \alpha^1 + 0 \in \mathbb{F}_{2^8}$ とみなすと、
+$10110101$ を
+$1 \alpha^7 + 0 \alpha^6 + 1 \alpha^5 + 1 \alpha^4 + 0 \alpha^3 + 1 \alpha^2 + 0 \alpha^1 + 1 \in \mathbb{F}_{2^8}$
+とみなし、
+$0110110$ を
+$0 \alpha^6 + 1 \alpha^5 + 1 \alpha^4 + 0 \alpha^3 + 1 \alpha^2 + 1 \alpha^1 + 0 \in \mathbb{F}_{2^8}$
+とみなすと、
 それらの差は
-$1 \alpha^7 + 0 \alpha^6 + 0 \alpha^5 + 0 \alpha^4 + 0 \alpha^3 + 0 \alpha^2 + 1 \alpha^1 + 1 \in \mathbb{F}_{2^8}$ となり、
+$1 \alpha^7 + 0 \alpha^6 + 0 \alpha^5 + 0 \alpha^4 + 0 \alpha^3 + 0 \alpha^2 + 1 \alpha^1 + 1 \in \mathbb{F}_{2^8}$
+となり、
 これをベクトル表記すると $10000011$ となるため。
 
 > 3. $\mathbb{F}_{2^3}$ における $x^3 + x + 1$ 以外の既約多項式を一つ見つけてください
@@ -92,7 +97,8 @@ $(g^j, j)$ をハッシュマップに保存する。これが Baby step。
 これをキーとしてハッシュマップを検索する。これが Giant step。
 
 もし Giant step のステップ $i$ でキー $g^{-i m}$ がヒットし、
-ハッシュマップから値 $j$ が得られたら、$i m + j$ が求める離散対数 $x$ である。
+ハッシュマップから値 $j$ が得られたら、
+$i m + j$ が求める離散対数 $x$ である。
 (ハッシュマップのヒット時には $y g^{-i m} = g^j$ が成立し、
 $y = g^{i m + j}$ となるため)
 
