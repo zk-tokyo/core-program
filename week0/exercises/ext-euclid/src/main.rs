@@ -17,5 +17,5 @@ fn main() {
         process::exit(1);
     });
     let res = ext_euclid(a, b);
-    println!("{}", res);
+    println!("{:?}", res);
 }
