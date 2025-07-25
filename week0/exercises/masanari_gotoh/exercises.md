@@ -1,0 +1,42 @@
+# 演習１
+1. 演算対象に対し、減算は加法逆元を加算することで、除算は乗法逆元を乗算することで実現できる．また，乗法逆元は拡張ユークリッドの互除法により求めることができる．
+2. 以下のように実装した
+```python:
+def extendedEuclidean(a:int , b:int) -> tuple[int, int]:
+    if b == 0:
+        return a, 1, 0
+    gcd, s, t = extendedEuclidean(b, a % b)
+    x = t
+    y = s - (a // b) * t
+    return gcd, x, y
+
+print(extendedEuclidean(7, 10))
+print(extendedEuclidean(2, 5))
+print(extendedEuclidean(35, 13))
+```
+
+```shell:出力結果
+(1, 3, -2)
+(1, -2, 1)
+(1, 3, -8)
+```
+3. 2のmod5における加法逆元は$5-2 = 3$なので，$3-2 (mod 5) = 3+3 (mod 5) = 6 (mod 5) = 1$.
+4. 2.の結果より，2と5に対して拡張ユークリッドの互除法を適用して，2のmod5における乗法逆元は-2 (mod 5) = 3であることがわかる．  
+したがって，$3/2 (mod 5) = 3*3 (mod 5) = 9 (mod 5) = 4$.
+5. $(7*5)^{-1} mod 13 = 35^{-1} mod 13$  
+ここで，2. の結果より，35のmod13における乗法逆元は3であることから，
+$(7*5)^{-1} mod 13 = 3$
+
+# 演習2
+1. 01111111
+2. 10000011
+3. $x^3 + 1$
+# 演習3
+- 素因数分解...素因数分解を多項式時間以内で効率的に行うアルゴリズムは現状知られておらず，また存在しないと仮定されており，2つの十分に大きな素数の積を通常のコンピューターで効率的に素因数分解することはできないから．  
+LWE問題...連立方程式の近似解となる格子点を効率的に計算する方法は見つかっていないから．
+- 数体篩法
+- 6 
+# 演習4
+- Baby-step-giant-step https://www.cryptrec.go.jp/exreport/cryptrec-ex-2602-2016.pdf
+- バイナリ法 https://zenn.dev/herumi/articles/ecc-binary-method
+- BN254
