@@ -105,7 +105,7 @@ GDPRのようなデータプライバシー規制の強化、セキュアな外�
 
 ゼロ知識証明やMPC, FHEはこれまでの暗号技術と違い、circuitという形でプログラム可能であり、開発者が自由にアプリケーションを生み出すことができます。例えばゼロ知識証明とMPC, FHEを組み合わせることすら可能です。
 
-![Programmable Cryptography概念図](https://prod-files-secure.s3.us-west-2.amazonaws.com/8beade4f-e5e9-455c-9c1d-809f8a8db8be/22c84759-8a27-4668-8476-bffc0e4275c2/image.png)
+![](https://0xparc.org/static/pc_tech_tree.png)
 
 Core ProgramではFHEなどを学ぶ機会を提供できませんでしたが、ゼロ知識証明だけでなく、これらの技術についても統合的に理解を深めることで、新たな応用分野を見つけることができるでしょう。
 
