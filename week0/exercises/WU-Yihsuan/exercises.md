@@ -153,7 +153,7 @@ LWE問題では、誤差付きの線形方程式系から元の秘密ベクト�
 4. 一致する値を見つけたら $x = im + j$
 
 **効率化できる理由**：
-$n$ 個の要素を $m \times m$ の2次元グリッドに分割し、行と列を別々に探索することで、$O(n) \rightarrow O(\sqrt{n})$ に計算量を削減できる。
+$n$ 個の要素を $m \times m$ の2次元グリッドに分割し、行と列を別々に探索することで、$O(n)$ \rightarrow $O(\sqrt{n})$ に計算量を削減できる。
 
 **参考**: https://zenn.dev/t_shunsuke/articles/note-baby-step-giant-step
 
