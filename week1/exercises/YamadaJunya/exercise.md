@@ -10,6 +10,8 @@ Groth'16：証明サイズが小さく検証時間が高速であること
 
 # 2. 実用化されているZKアプリケーションを一つ見つけて、以下の3つのドメインに何が採用されているのかURLとともに答えてください
 
+zcash
+
 a. ドメイン固有言語  
 Bellman DSL  
 https://github.com/zkcrypto/bellman  
