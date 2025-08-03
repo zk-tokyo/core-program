@@ -1,0 +1,43 @@
+# weeks
+
+week0:
+  - changed-files:
+      - any-glob-to-any-file: 'week0/**'
+
+week1:
+  - changed-files:
+      - any-glob-to-any-file: 'week1/**'
+
+week2:
+  - changed-files:
+      - any-glob-to-any-file: 'week2/**'
+
+week3:
+  - changed-files:
+      - any-glob-to-any-file: 'week3/**'
+
+week4:
+  - changed-files:
+      - any-glob-to-any-file: 'week4/**'
+
+week5:
+  - changed-files:
+      - any-glob-to-any-file: 'week5/**'
+
+week6:
+  - changed-files:
+      - any-glob-to-any-file: 'week6/**'
+
+# submission types
+
+exercises:
+  - changed-files:
+      - any-glob-to-any-file: '**/exercises/**'
+
+whiteboard_sessions:
+  - changed-files:
+      - any-glob-to-any-file: '**/whiteboard-sessions/**'
+
+final_projects:
+  - changed-files:
+      - any-glob-to-any-file: 'final-projects/**'
