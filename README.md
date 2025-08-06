@@ -22,8 +22,8 @@ Core Programはゼロ知識証明の理論と実装の理解を促し、Ethereum
 | --- | --- | --- | --- |
 | week0(6/30~7/28) | 有限体と楕円曲線 | なし | なし |
 | week1(7/28~8/2) | ゼロ知識証明入門 | ホワイトボードセッション1 | [Sorasue](https://x.com/SoraSue77) |
-| week2(8/4~8/9) | コミットメントスキーム・PLONK | ホワイトボードセッション2 | なし |
-| week3(8/12~8/16) | Groth16 | ホワイトボードセッション3 | [Leona](https://x.com/leo_hio) |
+| week2(8/4~8/9) | Groth16 | ホワイトボードセッション2 | なし |
+| week3(8/12~8/16) |コミットメントスキーム・PLONK   | ホワイトボードセッション3 | [Leona](https://x.com/leo_hio) |
 | week4(8/18~8/23) | zk-STARK | ホワイトボードセッション4 | なし |
 | week5(8/25~8/30) | zkのライブラリやアプリ実装、OSSの紹介 | Tornado-cashの実装演習 | TBD |
 | week6(9/1~9/6) | 成果物の準備期間 | ハッカソンアイデアの壁打ち会　| なし |
@@ -53,11 +53,11 @@ Core Programはゼロ知識証明の理論と実装の理解を促し、Ethereum
 | --- | --- | --- | --- |
 | week0 | [有限体と楕円曲線](https://docs.google.com/presentation/d/1faqAS3ryA0RGwsFvkEdv5BHr8J9TX4STkJuqkxZAWrc/edit?usp=sharing) | https://youtu.be/4KaWvuNfG6I |  |
 | week1 | [ゼロ知識証明入門](https://docs.google.com/presentation/d/1wQd2pQooTD884b2qC4QV-43oG0jJ5uyj9heW1GQeFQs/edit?usp=sharing) | https://youtu.be/qG24ys5rkCU |  |
-| week2 | コミットメントスキーム・PLONK | 準備中 | 🔄 作成中 |
-| week3 | Groth16 | 準備中 | 🔄 作成中 |
+| week2 | [Groth16](https://docs.google.com/presentation/d/14fKU6ypnEn2u--uySrmMuSF-Rs_hr-PZCQfNOSF3AGM/edit?usp=sharing) | 準備中 |  |
+| week3 | コミットメントスキーム・PLONK | 準備中 | 🔄 作成中 |
 | week4 | zk-STARK | 準備中 | 🔄 作成中 |
 | week5 | zkのライブラリやアプリ実装、OSSの紹介 | 準備中 | 🔄 作成中 |
-| week6 | 成果物の準備期間 | 準備中 | 🔄 作成中 |
+| week6 | 成果物の準備期間 | 準備中 | - |
 
 また、より深く学びたい人や最終成果物のヒント欲しい人に向けて補助教材を作成したので、ご覧ください。
 
