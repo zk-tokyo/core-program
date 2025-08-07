@@ -16,7 +16,7 @@ Groth16 の構成要素（QAP・Linear PCP・ペアリング）を通して、�
 
 ### 🎥講義動画
 
-https://youtu.be/XXXXX
+https://youtu.be/uYqWn0nk7IE
 
 ### 演習問題
 
