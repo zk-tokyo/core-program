@@ -29,33 +29,19 @@ template CommitmentHasher() {
 
 // 与えたシークレットとヌリファイアに対応するコミットメントがMerkleツリーに含まれているという条件のもとで証明を生成できる
 template Withdraw(levels) {
-    // public
-    signal input root;
-    signal input nullifierHash;
+    // TODO: public inputs: root, nullifierHash, recipient, relayer, fee
 
-    signal input recipient;
-    signal input relayer;
-    signal input fee;
 
-    // private
-    signal input nullifier;
-    signal input secret;
-    signal input pathElements[levels];
-    signal input pathIndices[levels];
+    // TODO: private inputs: nullifier, secret, pathElements[levels], pathIndices[levels]
 
-    component hasher = CommitmentHasher();
-    hasher.nullifier <== nullifier;
-    hasher.secret <== secret;
-    hasher.nullifierHash === nullifierHash;
 
-    component tree = MerkleTreeChecker(levels);
-    tree.leaf <== hasher.commitment;
-    tree.root <== root;
-    for (var i = 0; i < levels; i++) {
-        tree.pathElements[i] <== pathElements[i];
-        tree.pathIndices[i] <== pathIndices[i];
-    }
+    // TODO: CommitmentHasherを定義し、nullifierHashを計算する
 
+
+    // TODO: MerkleTreeCheckerを定義し、コミットメントとルートをもとにマークルツリーの検証を行う
+
+
+    // 最終的な出力の定義
     signal recipientSquare;
     signal feeSquare;
     signal relayerSquare;
