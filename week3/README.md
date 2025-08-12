@@ -10,8 +10,8 @@
 
 ## レクチャー動画
 
-[Google Drive](https://drive.google.com/drive/folders/19VH4PR5RaUiwyzlwGo1PiMuUUriO7URy)
-YouTube: to be uploaded
+- [Google Drive](https://drive.google.com/drive/folders/19VH4PR5RaUiwyzlwGo1PiMuUUriO7URy)
+- YouTube: to be uploaded
 
 ## 課題
 
