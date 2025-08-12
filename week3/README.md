@@ -6,8 +6,7 @@
 
 ## スライド
 
-- [Google Slides](https://docs.google.com/presentation/d/1kMSN8BQA8cDyI1xYcJYJAKNRsgA9mDKI8WKNhouzsXU/): **推奨**
-- [PDF](./cp25_week3.pdf): 変換によるスペースズレあり
+[Google Slides](https://docs.google.com/presentation/d/15BKX7Qx8Mpq_MlSRAsAF_Nfre2grE1ddqgj3qf9vlfw/edit?usp=sharing)
 
 ## レクチャー動画
 
