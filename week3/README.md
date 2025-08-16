@@ -6,11 +6,12 @@
 
 ## スライド
 
-[Google Slides](https://docs.google.com/presentation/d/15BKX7Qx8Mpq_MlSRAsAF_Nfre2grE1ddqgj3qf9vlfw/edit?usp=sharing)
+[Google Slides](https://docs.google.com/presentation/d/15BKX7Qx8Mpq_MlSRAsAF_Nfre2grE1ddqgj3qf9vlfw)
 
 ## レクチャー動画
 
-To be uploaded.
+- [Google Drive](https://drive.google.com/drive/folders/19VH4PR5RaUiwyzlwGo1PiMuUUriO7URy)
+- YouTube: to be uploaded
 
 ## 課題
 
