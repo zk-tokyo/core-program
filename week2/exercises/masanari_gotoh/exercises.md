@@ -48,8 +48,15 @@ $$
 
 ## 3. Linear PCPベースのSNARKとGroth16がどのような安全性仮定に基づいているか説明してください。(ヒント: Generic Group Model, KoE Assumption)
 
-groth16のsoundnessはgeneric bilinear group modelに基づいている．
-Knowledge of exponecial Assumption
-文章で記述してください。
+Knowledge of exponecial Assumption  
+問題意識：$\pi_i$が本当に$g^{l_i(\tau)}$から導出されていることを保証したい．  
+KoE仮定とは，2つの群要素([1],[$\alpha$])に対して([k],[$k\alpha$])を出力できるアルゴリズムは必ずkを知っているという仮定である  
+これを仮定すると  
+Generic Group Model  
+k
+[参考]
+- https://www.youtube.com/watch?v=I7TXIHXamwM 
+- https://www.jstage.jst.go.jp/article/iis/25/1/25_2019.R.03/_pdf
+- https://medium.com/blockapex/a-primer-for-the-zero-knowledge-cryptography-iii-4d1ee3bd6b0d
 
 ---
