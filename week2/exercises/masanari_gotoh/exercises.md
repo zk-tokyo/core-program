@@ -48,15 +48,16 @@ $$
 
 ## 3. Linear PCPベースのSNARKとGroth16がどのような安全性仮定に基づいているか説明してください。(ヒント: Generic Group Model, KoE Assumption)
 
-Knowledge of exponecial Assumption  
-問題意識：$\pi_i$が本当に$g^{l_i(\tau)}$から導出されていることを保証したい．  
-KoE仮定とは，2つの群要素([1],[$\alpha$])に対して([k],[$k\alpha$])を出力できるアルゴリズムは必ずkを知っているという仮定である  
-これを仮定すると  
-Generic Group Model  
-k
+**Knowledge of exponecial Assumption(KoE仮定)**  
+Konwledge Soundnessを保証するための仮定．すなわち，証明者が$com_f = g^{f(\tau)}$となる$f$をちゃんと知っていることを保証する．
+この仮定に基づくと，ランダムな定数$a$をサンプルし，$com_f$に対して$com_f' = g^{af(\tau)}$を計算した場合，$e(com_f,g^a) = e(com_f',g)$ が成り立つならば，$com_f = g^{f(\tau)}$なる$f$を抽出するエクストラクターが存在する．  
+つまり，例えば，証明者が$\pi_1 = g^{\Sigma c_il_i(\tau)}$の元となる$\Sigma c_il_i(x)$を知っていることを証明するためには，ランダムな点aに対して$\pi_1'=g^{a\Sigma c_il_i(\tau)}$を計算し，検証者は$e(\pi_1, g^a) = e(\pi_1',g)$が成立するか検証すればよい．  
+ただし，KoEを用いた手法は，コミットメントのサイズと検証時間にオーバーヘッドをもたらす．この問題を解決するためにGeneric Group Modelが使われることがある（こちらは調べてもよくわかりませんでした…）．
+
+
+  
 [参考]
-- https://www.youtube.com/watch?v=I7TXIHXamwM 
-- https://www.jstage.jst.go.jp/article/iis/25/1/25_2019.R.03/_pdf
-- https://medium.com/blockapex/a-primer-for-the-zero-knowledge-cryptography-iii-4d1ee3bd6b0d
+- https://eprint.iacr.org/2016/270.pdf
+- https://www.youtube.com/watch?v=WyT5KkKBJUw
 
 ---
