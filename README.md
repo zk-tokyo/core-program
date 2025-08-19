@@ -56,8 +56,8 @@ Core Programはゼロ知識証明の理論と実装の理解を促し、Ethereum
 | week2 | [Groth16](https://docs.google.com/presentation/d/14fKU6ypnEn2u--uySrmMuSF-Rs_hr-PZCQfNOSF3AGM/edit?usp=sharing) | https://youtu.be/uYqWn0nk7IE |  |
 | week3 | コミットメントスキーム・PLONK | 準備中 | 🔄 作成中 |
 | week4 | zk-STARK | 準備中 | 🔄 作成中 |
-| week5 | zkのライブラリやアプリ実装、OSSの紹介 | 準備中 | 🔄 作成中 |
-| week6 | 成果物の準備期間 | 準備中 | - |
+| week5 | Circom実践 | 準備中 | 🔄 作成中 |
+| week6 | 成果物の準備期間 | - | - |
 
 また、より深く学びたい人や最終成果物のヒント欲しい人に向けて補助教材を作成したので、ご覧ください。
 
