@@ -112,7 +112,7 @@ Markdownでの数式やコードの記述方法は[こちら](https://help.docba
 このリポジトリーの `main` ブランチを個人アカウントにフォークし、フォークしたリポジトリーをローカル環境にクローンしましょう。これ以降のステップ1~3では、**フォークしたリポジトリーに対して変更・追加を行います。**
 
 ```sh
-$ git clone https://github.com/zk-tokyo/core-program.git
+$ git clone https://github.com/{YOUR_USER_NAME}/core-program.git
 ```
 
 > [!TIP]
