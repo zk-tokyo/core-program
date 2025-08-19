@@ -3,8 +3,8 @@
 ## テーマ
 
 この週では、以下を学びます。
-- Circomのセットアップと基本的な使い方（[circom](./circom) ディレクトリ）
 - Tornado Cash と Poseidon Hash の仕組み（[スライド](./slide.pdf)）
+- Circomのセットアップと基本的な使い方（[circom](./circom) ディレクトリ）
 
 また、実装演習ではプライバシー保護型ミキサープロトコルである Tornado Cash の実装を行います。（[whiteboard-sessions](./whiteboard-sessions) ディレクトリ）
 
