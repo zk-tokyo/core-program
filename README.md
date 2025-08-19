@@ -23,8 +23,8 @@ Core Programはゼロ知識証明の理論と実装の理解を促し、Ethereum
 | week0(6/30~7/28) | 有限体と楕円曲線 | なし | なし |
 | week1(7/28~8/2) | ゼロ知識証明入門 | ホワイトボードセッション1 | [Sorasue](https://x.com/SoraSue77) |
 | week2(8/4~8/9) | Groth16 | ホワイトボードセッション2 | なし |
-| week3(8/12~8/16) |コミットメントスキーム・PLONK   | ホワイトボードセッション3 | [Leona](https://x.com/leo_hio) |
-| week4(8/18~8/23) | zk-STARK | ホワイトボードセッション4 | なし |
+| week3(8/12~8/16) | コミットメントスキーム・PLONK | ホワイトボードセッション3 | [Leona](https://x.com/leo_hio) |
+| week4(8/18~8/23) | zkSTARK | ホワイトボードセッション4 | なし |
 | week5(8/25~8/30) | zkのライブラリやアプリ実装、OSSの紹介 | Tornado-cashの実装演習 | TBD |
 | week6(9/1~9/6) | 成果物の準備期間 | ハッカソンアイデアの壁打ち会　| なし |
 | extra |  | 反省会・打ち上げ　| なし |
@@ -54,8 +54,8 @@ Core Programはゼロ知識証明の理論と実装の理解を促し、Ethereum
 | week0 | [有限体と楕円曲線](https://docs.google.com/presentation/d/1faqAS3ryA0RGwsFvkEdv5BHr8J9TX4STkJuqkxZAWrc/edit?usp=sharing) | https://youtu.be/4KaWvuNfG6I |  |
 | week1 | [ゼロ知識証明入門](https://docs.google.com/presentation/d/1wQd2pQooTD884b2qC4QV-43oG0jJ5uyj9heW1GQeFQs/edit?usp=sharing) | https://youtu.be/qG24ys5rkCU |  |
 | week2 | [Groth16](https://docs.google.com/presentation/d/14fKU6ypnEn2u--uySrmMuSF-Rs_hr-PZCQfNOSF3AGM/edit?usp=sharing) | https://youtu.be/uYqWn0nk7IE |  |
-| week3 | コミットメントスキーム・PLONK | 準備中 | 🔄 作成中 |
-| week4 | zk-STARK | 準備中 | 🔄 作成中 |
+| week3 | [コミットメントスキーム・PLONK](https://docs.google.com/presentation/d/15BKX7Qx8Mpq_MlSRAsAF_Nfre2grE1ddqgj3qf9vlfw) | [Part1](https://youtu.be/CouLgGAY7_4) & [Part2](https://youtu.be/3Q7m7EehseY) | |
+| week4 | [zkSTARK](https://docs.google.com/presentation/d/1Q1Ii254ixxjMbgVm6oJghIxeW3r0qAnuPJOVPTcd0Wc) | https://youtu.be/udw52VrFZHI | |
 | week5 | Circom実践 | 準備中 | 🔄 作成中 |
 | week6 | 成果物の準備期間 | - | - |
 
@@ -168,8 +168,8 @@ PR を作成すると、自動的にその週の担当メンターにレビュ�
 | Discord名 | 役割 | 自己紹介 |
 | --- | --- | --- |
 | shouki | week 0 | このプログラムのマネージャーを務めさせていただきます津田と申します。現在は[Uzumaki.house](https://uzumaki.house/)を拠点に、VOLE-based ZKの研究・開発や形式検証を使ったEthereumのセキュリティ向上などを考えています。以前はゼロ知識証明を使った秘匿送金プロジェクトやzk-Rollupの開発にも携わっておりました。受講者の皆さんがCore Programの後も活躍できるように全力でサポートさせていただきます。 |
-| gohan | week 1 & 3 | 私はZK Core Program 2023をきっかけにZKを学び、[MPCについてEthereum Foundation PSEと共同研究](https://eprint.iacr.org/2024/2037)、[zkVMベンチマークについてZKProof7で発表](https://www.youtube.com/live/LMLfA1N5Has)といった研究成果を上げ、現在は近未来暗号研究所[ZOMIA](https://zomiaresearch.org/)で研究と事業を進めています。ZK(SNARK)は、この信頼できない社会に突如として現れた世界を救う魔法です。一流の魔術師になって一緒に世界を救いましょう。 |
-| seiya_kobayashi | weeks 2 & 4 | 持続可能性のある次世代のインターネットとそれを取り巻く社会において、ゼロ知識証明をはじめとした[現代の暗号技術](https://blog.seiya.work/2024/10/04/modern-cryptography.html)はその中心的役割を果たすことになると考えています。[transformer](https://arxiv.org/pdf/1706.03762) をAI領域における一つの転換点と捉えると、[SNARK](https://eprint.iacr.org/2013/279.pdf) は、暗号領域における大きな転換点といえるでしょう。このプログラムでは、主にその転換点以降の暗号学的証明技術について、理論と共にそれらが実社会でどのように応用できるのかを一緒に模索していきましょう。 |
+| gohan | week 1 & 2 | 私はZK Core Program 2023をきっかけにZKを学び、[MPCについてEthereum Foundation PSEと共同研究](https://eprint.iacr.org/2024/2037)、[zkVMベンチマークについてZKProof7で発表](https://www.youtube.com/live/LMLfA1N5Has)といった研究成果を上げ、現在は近未来暗号研究所[ZOMIA](https://zomiaresearch.org/)で研究と事業を進めています。ZK(SNARK)は、この信頼できない社会に突如として現れた世界を救う魔法です。一流の魔術師になって一緒に世界を救いましょう。 |
+| seiya_kobayashi | weeks 3 & 4 | 持続可能性のある次世代のインターネットとそれを取り巻く社会において、ゼロ知識証明をはじめとした[現代の暗号技術](https://blog.seiya.work/2024/10/04/modern-cryptography.html)はその中心的役割を果たすことになると考えています。[transformer](https://arxiv.org/pdf/1706.03762) をAI領域における一つの転換点と捉えると、[SNARK](https://eprint.iacr.org/2013/279.pdf) は、暗号領域における大きな転換点といえるでしょう。このプログラムでは、主にその転換点以降の暗号学的証明技術について、理論と共にそれらが実社会でどのように応用できるのかを一緒に模索していきましょう。 |
 | mameta | week 4 | 1回目のZK Core ProgramをきっかけにzkTokyoの運営に携わり、web3エンジニアとして活動をしてきました。今回は week4 の教材作成のみでの貢献となってしまいますが、少しでもみなさまの学習の助けになれれば幸いです。 |
 |bati668  |week5  |はじめまして、bati668です。本プログラムでは、Week 5の実装演習パートのカリキュラムを担当させていただきました。私自身は、昨年、ゼロ知識証明を用いたプライバシートランザクションシステムの構築に仕事で携わることになり、その準備として昨年のCore Programに参加しました。ゼロ知識証明のプログラミング経験は約1年ですが、ブロックチェーン全体での実装経験は4年ほどあります。また、ブロックチェーン以外にも、Webアプリケーションやモバイルアプリの開発経験が6年ほどあり、幅広い技術領域に対して質問対応可能です。本プログラムはなかなかハードですが、一緒に乗り越えていきましょう。どうぞよろしくお願いします。  |
 |yawn  |week5  | yawn と申します。Week5 の circom の基礎を担当させていただきました。昨年の Core Program の参加者で、まだまだ勉強中の身ですが、皆様の学習のお役に立てることがありましたら幸いです。エンジニアコミュニティの UNCHAIN を経て、 HackDays （ DAO ツールの Toban などを開発）や、 Henkaku Community や、 Code for Japan で活動しております。 よろしくお願いいたします！|
