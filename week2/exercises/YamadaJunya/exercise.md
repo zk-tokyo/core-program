@@ -27,7 +27,7 @@ g_1 = w_1 w_2 = 3\cdot 4 = 12 \equiv 5 \pmod 7
 $$
 
 $$
-g_4 = g_1\,(w_3+w_4) = 5\cdot(2+6)=5\cdot 1 \equiv 5 \pmod 7
+g_4 = g_1\cdot(w_3+w_4) = 5\cdot(2+6)=5\cdot 1 \equiv 5 \pmod 7
 $$
 
 $$
@@ -166,7 +166,7 @@ $$
 
 商多項式：
 $$
-p(x)=V(x)\,q(x),\qquad q(x)=5x+6 \pmod 7
+p(x)=V(x)q(x),\qquad q(x)=5x+6 \pmod 7
 $$
 
 ---
@@ -178,7 +178,7 @@ $$
 
 したがって
 $$
-p(x)=V(x)\,q(x)\ \text{が成り立つ}
+p(x)=V(x)q(x)\ \text{が成り立つ}
 $$
 
 
