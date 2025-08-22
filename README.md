@@ -25,7 +25,7 @@ Core Programはゼロ知識証明の理論と実装の理解を促し、Ethereum
 | week2(8/4~8/9) | Groth16 | ホワイトボードセッション2 | なし |
 | week3(8/12~8/16) | コミットメントスキーム・PLONK | ホワイトボードセッション3 | [Leona](https://x.com/leo_hio) |
 | week4(8/18~8/23) | zkSTARK | ホワイトボードセッション4 | なし |
-| week5(8/25~8/30) | zkのライブラリやアプリ実装、OSSの紹介 | Tornado-cashの実装演習 | TBD |
+| week5(8/25~8/30) | zkのライブラリやアプリ実装、OSSの紹介 | Tornado-cashの実装演習 | [Ying Tong](https://x.com/therealyingtong) |
 | week6(9/1~9/6) | 成果物の準備期間 | ハッカソンアイデアの壁打ち会　| なし |
 | extra |  | 反省会・打ち上げ　| なし |
 
