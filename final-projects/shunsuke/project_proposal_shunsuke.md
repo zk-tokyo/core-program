@@ -44,7 +44,3 @@
 
 ## 6. Reference Materials
 * **MACI (Minimum Anti-Collusion Infrastructure)**: https://maci.pse.dev/docs/core-concepts/workflow
-* **circom**: https://docs.circom.io/
-* **ZoKrates**: https://zokrates.github.io/
-* **Ethereum Docs**: https://ethereum.org/ja/developers/docs/
-* **プライバシー保護とブロックチェーンに関する論文**
