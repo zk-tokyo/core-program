@@ -4,7 +4,7 @@ Ethereum PSE の ZKP プロジェクトの日本語チュートリアルのブ�
 
 ## 1. Overview <!-- プロジェクトの概要を数行で記載 -->
 
-Ethereum Foundation の PSE が開発しているゼロ知識証明（ZKP）関連プロジェクト（e.g. ZK EMail、Semaphore、TLSNotary、zkP2P）の公式チュートリアルを試し、環境構築、実行手順、実行結果、所感等を日本語でまとめたブログを執筆・公開する。
+Ethereum Foundation の PSE が開発しているゼロ知識証明（ZKP）関連プロジェクト（e.g. ZK EMail、Semaphore、TLSNotary）の公式チュートリアルを試し、環境構築、実行手順、実行結果、所感等を日本語でまとめたブログを執筆・公開する。
 
 ## 2. Objectives <!-- プロジェクトの背景・目的・スコープ等を記載 -->
 
@@ -20,7 +20,7 @@ Ethereum Foundation の PSE が開発しているゼロ知識証明（ZKP）関�
 
 **スコープ**
 
-- PSE 公式 GitHub 上の主要プロジェクト（e.g. ZK EMail、Semaphore、TLSNotary、zkP2P）
+- PSE 公式 GitHub 上の主要プロジェクト（e.g. ZK EMail、Semaphore、TLSNotary）
 
 ## 3. Deliverables <!-- プロジェクトにおける成果物の想定を記載 -->
 
