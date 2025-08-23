@@ -1,8 +1,8 @@
 name: "pr labeler"
 
 on:
-  pull_request:
-    types: [opened, synchronize]
+  pull_request_target:
+    types: [opened, reopened, synchronize]
 
 jobs:
   add-labels:
@@ -12,6 +12,10 @@ jobs:
       contents: read
       pull-requests: write
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          repository: ${{ github.repository }}
       - uses: actions/labeler@v5
         with:
           configuration-path: .github/labeler_configs.yml
