@@ -37,18 +37,75 @@ template FizzBuzz () {
    var arrayLength = 15;
 
    // signal を定義
+   component divRem3[arrayLength];
+   component divRem5[arrayLength];
+   component divRem15[arrayLength];
+   
+   component isMultipleOf3[arrayLength];
+   component isMultipleOf5[arrayLength];
+   component isMultipleOf15[arrayLength];
+
+   signal multipleOf3_convertResult[arrayLength];
+   signal multipleOf5_convertResult[arrayLength];
 
    for (var i = 0; i < arrayLength; i++) {
       var num = array[i];
       log("=== ", num, " ===");
 
       // ロジックを実装
+      divRem3[i] = DivRem(3, 8); // 3で割る回路
+      divRem5[i] = DivRem(5, 8); // 5で割る回路
+      divRem15[i] = DivRem(15, 8); // 15で割る回路
 
+      divRem3[i].dividend <== num; // 被除数に配列の値を接続
+      divRem5[i].dividend <== num; // 被除数に配列の値を接続
+      divRem15[i].dividend <== num; // 被除数に配列の値を接続
 
+      // log("quotient:", divRem3[i].quotient, "remainder:", divRem3[i].remainder);
+      // log("quotient:", divRem5[i].quotient, "remainder:", divRem5[i].remainder);
+      // log("quotient:", divRem15[i].quotient, "remainder:", divRem15[i].remainder);
+
+      isMultipleOf3[i] = IsEqual(); // 3で割った余りが0かどうかを判定する回路
+      isMultipleOf3[i].in[0] <== divRem3[i].remainder;
+      isMultipleOf3[i].in[1] <== 0;
+
+      isMultipleOf5[i] = IsEqual(); // 5で割った余りが0かどうかを判定する回路
+      isMultipleOf5[i].in[0] <== divRem5[i].remainder;
+      isMultipleOf5[i].in[1] <== 0;
+
+      isMultipleOf15[i] = IsEqual(); // 15で割った余りが0かどうかを判定する回路
+      isMultipleOf15[i].in[0] <== divRem15[i].remainder;
+      isMultipleOf15[i].in[1] <== 0;
+
+      // fizzbuzzのルールに従って、ログを出力
+      if(isMultipleOf15[i].out) { // if(isMultipleOf15[i].out === 1)だと通らない。また、条件が未知で、ブロック内で制約生成に影響する処理があると通らない。
+         log("FizzBuzz");
+      } else if(isMultipleOf5[i].out) { // if(isMultipleOf5[i].out === 1)だと通らない。また、条件が未知で、ブロック内で制約生成に影響する処理があると通らない。
+         log("Buzz");
+      }else if(isMultipleOf3[i].out) { // if(isMultipleOf3[i].out === 1)だと通らない。また、条件が未知で、ブロック内で制約生成に影響する処理があると通らない。
+         log("Fizz");
+      }
+
+      // fizzbuzzのルールに従って、配列の値を変換
+      // out[i] <== isMultipleOf15[i]*1515 + (1 - isMultipleOf15[i])*(isMultipleOf5[i]*5555 + (1 - isMultipleOf5[i])*(isMultipleOf3[i]*3333 + (1 - isMultipleOf3[i])*num));
+      multipleOf3_convertResult[i] <== isMultipleOf3[i].out * 3333 + (1 - isMultipleOf3[i].out) * num; // 3で割り切れる場合は3333に変換
+      multipleOf5_convertResult[i] <== isMultipleOf5[i].out * 5555 + (1 - isMultipleOf5[i].out) * multipleOf3_convertResult[i]; // 5で割り切れる場合は5555に変換
+      out[i] <== isMultipleOf15[i].out * 1515 + (1 - isMultipleOf15[i].out) * multipleOf5_convertResult[i]; // 15で割り切れる場合は1515に変換
+      // log("out[", i, "] :", out[i]);
    }
 
    log("============");
+
+   // for (var i = 0; i < arrayLength; i++) {
+   //    log("out[", i, "] :", "previous value:",array[i],"converted value:", out[i]);
+   // }
 }
 
 // FizzBuzzテンプレートをmainコンポーネントとしてインスタンス化
 component main = FizzBuzz();
+
+/*
+メモ：コマンド
+circom fizzbuzz.circom --r1cs --wasm --sym --c
+node fizzbuzz_js/generate_witness.js fizzbuzz_js/fizzbuzz.wasm input.json witness.wtns
+*/
