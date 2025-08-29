@@ -1,0 +1,11 @@
+1,1,1,main.out
+2,2,1,main.in1
+3,3,1,main.in2
+4,4,1,main.in3
+5,5,1,main.intermediate
+6,-1,0,main.mult2_1.out
+7,-1,0,main.mult2_1.in1
+8,-1,0,main.mult2_1.in2
+9,-1,0,main.mult2_2.out
+10,-1,0,main.mult2_2.in1
+11,-1,0,main.mult2_2.in2
