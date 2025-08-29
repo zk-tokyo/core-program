@@ -32,7 +32,7 @@ template DivRem(divisor, nBits) {
 // FizzBuzzのロジックを実装し、ルールに従って配列の値を変換する回路
 template FizzBuzz () {
    signal input array[15]; // 15個の数値の入力配列
-   signal output out[15]; // 変換後の出力配列
+   signal output out[15]; // 変換後の出力配列、component muxMultipleOf15[arrayLength]を消して、ここをcomponet out[15]と宣言しても通る。
 
    var arrayLength = 15;
 
@@ -45,8 +45,12 @@ template FizzBuzz () {
    component isMultipleOf5[arrayLength];
    component isMultipleOf15[arrayLength];
 
-   signal multipleOf3_convertResult[arrayLength];
-   signal multipleOf5_convertResult[arrayLength];
+   component muxMultipleOf3[arrayLength];
+   component muxMultipleOf5[arrayLength];
+   component muxMultipleOf15[arrayLength];
+
+   // signal multipleOf3_convertResult[arrayLength]; // Mux1使わない場合
+   // signal multipleOf5_convertResult[arrayLength]; // Mux１使わない場合
 
    for (var i = 0; i < arrayLength; i++) {
       var num = array[i];
@@ -57,25 +61,23 @@ template FizzBuzz () {
       divRem5[i] = DivRem(5, 8); // 5で割る回路
       divRem15[i] = DivRem(15, 8); // 15で割る回路
 
-      divRem3[i].dividend <== num; // 被除数に配列の値を接続
-      divRem5[i].dividend <== num; // 被除数に配列の値を接続
-      divRem15[i].dividend <== num; // 被除数に配列の値を接続
+      // 被除数に配列の値を接続
+      divRem3[i].dividend <== num;
+      divRem5[i].dividend <== num;
+      divRem15[i].dividend <== num;
 
       // log("quotient:", divRem3[i].quotient, "remainder:", divRem3[i].remainder);
       // log("quotient:", divRem5[i].quotient, "remainder:", divRem5[i].remainder);
       // log("quotient:", divRem15[i].quotient, "remainder:", divRem15[i].remainder);
 
-      isMultipleOf3[i] = IsEqual(); // 3で割った余りが0かどうかを判定する回路
-      isMultipleOf3[i].in[0] <== divRem3[i].remainder;
-      isMultipleOf3[i].in[1] <== 0;
+      isMultipleOf3[i] = IsZero(); // 3で割った余りが0かどうかを判定する回路
+      isMultipleOf3[i].in <== divRem3[i].remainder;
 
-      isMultipleOf5[i] = IsEqual(); // 5で割った余りが0かどうかを判定する回路
-      isMultipleOf5[i].in[0] <== divRem5[i].remainder;
-      isMultipleOf5[i].in[1] <== 0;
+      isMultipleOf5[i] = IsZero(); // 5で割った余りが0かどうかを判定する回路
+      isMultipleOf5[i].in <== divRem5[i].remainder;
 
-      isMultipleOf15[i] = IsEqual(); // 15で割った余りが0かどうかを判定する回路
-      isMultipleOf15[i].in[0] <== divRem15[i].remainder;
-      isMultipleOf15[i].in[1] <== 0;
+      isMultipleOf15[i] = IsZero(); // 15で割った余りが0かどうかを判定する回路
+      isMultipleOf15[i].in <== divRem15[i].remainder;
 
       // fizzbuzzのルールに従って、ログを出力
       if(isMultipleOf15[i].out) { // if(isMultipleOf15[i].out === 1)だと通らない。また、条件が未知で、ブロック内で制約生成に影響する処理があると通らない。
@@ -87,10 +89,32 @@ template FizzBuzz () {
       }
 
       // fizzbuzzのルールに従って、配列の値を変換
+      // 3で割り切れる場合は3333に変換
+      muxMultipleOf3[i] = Mux1();
+      muxMultipleOf3[i].c[0] <== num;
+      muxMultipleOf3[i].c[1] <== 3333;
+      muxMultipleOf3[i].s <== isMultipleOf3[i].out;
+
+      // 5で割り切れる場合は5555に変換
+      muxMultipleOf5[i] = Mux1();
+      muxMultipleOf5[i].c[0] <== muxMultipleOf3[i].out;
+      muxMultipleOf5[i].c[1] <== 5555;
+      muxMultipleOf5[i].s <== isMultipleOf5[i].out;
+
+      // 15で割り切れる場合は1515に変換
+      muxMultipleOf15[i] = Mux1();
+      muxMultipleOf15[i].c[0] <== muxMultipleOf5[i].out;
+      muxMultipleOf15[i].c[1] <== 1515;
+      muxMultipleOf15[i].s <== isMultipleOf15[i].out;
+
+      out[i] <== muxMultipleOf15[i].out;
+
+      // Mux1を使わない場合
       // out[i] <== isMultipleOf15[i]*1515 + (1 - isMultipleOf15[i])*(isMultipleOf5[i]*5555 + (1 - isMultipleOf5[i])*(isMultipleOf3[i]*3333 + (1 - isMultipleOf3[i])*num));
-      multipleOf3_convertResult[i] <== isMultipleOf3[i].out * 3333 + (1 - isMultipleOf3[i].out) * num; // 3で割り切れる場合は3333に変換
-      multipleOf5_convertResult[i] <== isMultipleOf5[i].out * 5555 + (1 - isMultipleOf5[i].out) * multipleOf3_convertResult[i]; // 5で割り切れる場合は5555に変換
-      out[i] <== isMultipleOf15[i].out * 1515 + (1 - isMultipleOf15[i].out) * multipleOf5_convertResult[i]; // 15で割り切れる場合は1515に変換
+      // multipleOf3_convertResult[i] <== isMultipleOf3[i].out * 3333 + (1 - isMultipleOf3[i].out) * num; // 3で割り切れる場合は3333に変換
+      // multipleOf5_convertResult[i] <== isMultipleOf5[i].out * 5555 + (1 - isMultipleOf5[i].out) * multipleOf3_convertResult[i]; // 5で割り切れる場合は5555に変換
+      // out[i] <== isMultipleOf15[i].out * 1515 + (1 - isMultipleOf15[i].out) * multipleOf5_convertResult[i]; // 15で割り切れる場合は1515に変換
+      
       // log("out[", i, "] :", out[i]);
    }
 
