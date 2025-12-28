@@ -1,0 +1,12 @@
+{
+  "name": "fizzbuzz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "circomlib": "^2.0.5"
+  }
+}
